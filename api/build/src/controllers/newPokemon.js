@@ -29,7 +29,7 @@ function newPokemon(body) {
                 Speed: body.Speed,
                 img: body.img,
             });
-            const findType = yield db_2.default.poke_type.findAll({
+            const findType = yield db_2.default.type.findAll({
                 where: { name: body.types },
             });
             // console.log("soy find type:", findType);

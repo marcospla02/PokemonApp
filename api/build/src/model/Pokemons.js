@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const Pokemon = (sequelize) => {
+const pokemons = (sequelize) => {
     sequelize.define("pokemon", {
         id: {
             type: sequelize_1.DataTypes.UUID,
@@ -19,8 +19,8 @@ const Pokemon = (sequelize) => {
         Defense: { type: sequelize_1.DataTypes.INTEGER },
         Speed: { type: sequelize_1.DataTypes.INTEGER },
         img: { type: sequelize_1.DataTypes.STRING },
-        types: { type: sequelize_1.DataTypes.ARRAY(sequelize_1.DataTypes.STRING) },
+        // types: { type: DataTypes.ARRAY(DataTypes.STRING) },
         createdInDb: { type: sequelize_1.DataTypes.BOOLEAN, defaultValue: true },
     }, { timestamps: false });
 };
-exports.default = Pokemon;
+exports.default = pokemons;

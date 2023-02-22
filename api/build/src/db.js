@@ -13,13 +13,13 @@ const sequelize = new sequelize_1.Sequelize(`postgres://${DB_USER}:${DB_PASSWORD
     logging: false,
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
-(0, Pokemons_1.default)(sequelize);
 (0, Types_1.default)(sequelize);
-const { poke_type, pokemon } = sequelize.models;
-poke_type.belongsToMany(pokemon, { through: "Pokemon_Type" }); // the name of the model, no the name file
-pokemon.belongsToMany(poke_type, { through: "Pokemon_Type" });
+(0, Pokemons_1.default)(sequelize);
+const { type, pokemon } = sequelize.models;
+type.belongsToMany(pokemon, { through: "Pokemon_Type" }); // the name of the model, no the name file
+pokemon.belongsToMany(type, { through: "Pokemon_Type" });
 exports.default = {
-    poke_type,
+    type,
     pokemon,
     sequelize,
 };

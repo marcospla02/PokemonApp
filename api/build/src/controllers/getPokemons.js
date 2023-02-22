@@ -45,10 +45,16 @@ function getPokemons() {
             });
             const infoDb = yield (0, getPokemonsDb_1.default)();
             const allInfo = yield pokeInfo.concat(infoDb);
-            return db_1.default.pokemon.bulkCreate(allInfo);
-            // return Pokemon.pokemon.findOrCreate({
-            //   where: { name: allInfo.map((p: SchemaPokemon) => p.name) },
-            // });
+            let num = 0;
+            while (num < 1) {
+                console.log("soy num antes:", num);
+                num++;
+                console.log("soy num desp:", num);
+                return db_1.default.pokemon.bulkCreate(allInfo);
+            }
+            return db_1.default.pokemon.findOrCreate({
+                where: { name: allInfo.map((p) => p.name) },
+            });
         }
         catch (error) {
             console.error(error.message);

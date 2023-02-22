@@ -20,9 +20,9 @@ function getTypes() {
             const typesApi = yield (0, axios_1.default)("https://pokeapi.co/api/v2/type");
             const typesApiToDb = yield typesApi.data.results.map((typeName) => typeName.name);
             typesApiToDb.forEach((type) => {
-                db_1.default.poke_type.findOrCreate({ where: { name: type } });
+                db_1.default.type.findOrCreate({ where: { name: type } });
             });
-            return yield db_1.default.poke_type.findAll();
+            return yield db_1.default.type.findAll();
         }
         catch (error) {
             console.error(error.message);

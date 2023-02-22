@@ -22,7 +22,7 @@ function getPokemonsIdInDb(id) {
                     id: id,
                 },
                 include: {
-                    model: db_2.default.poke_type,
+                    model: db_2.default.type,
                     attributes: ["name"],
                     through: {
                         attributes: [],

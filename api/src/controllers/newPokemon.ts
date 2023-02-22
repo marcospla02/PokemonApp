@@ -17,7 +17,7 @@ export default async function newPokemon(body: Body) {
       img: body.img,
     });
 
-    const findType = await Type.poke_type.findAll({
+    const findType = await Type.type.findAll({
       where: { name: body.types },
     });
 

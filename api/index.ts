@@ -3,8 +3,8 @@ import sequelize from "./src/db";
 
 const PORT = 3001;
 
-sequelize.sequelize.sync().then(() => {
+sequelize.sequelize.sync({ force: true }).then(() => {
   server.listen(PORT, () => {
-    console.log(`%s listening at ${PORT}`); // eslint-disable-line no-console
+    console.log(`I'm listening at ${PORT}`); // eslint-disable-line no-console
   });
 });

@@ -33,10 +33,18 @@ export async function getPokemons() {
     });
     const infoDb = await getPokemonsDb();
     const allInfo = await pokeInfo.concat(infoDb);
-    return Pokemon.pokemon.bulkCreate(allInfo);
-    // return Pokemon.pokemon.findOrCreate({
-    //   where: { name: allInfo.map((p: SchemaPokemon) => p.name) },
-    // });
+
+    let num = 0;
+    while (num < 1) {
+      console.log("soy num antes:", num);
+      num++;
+      console.log("soy num desp:", num);
+      return Pokemon.pokemon.bulkCreate(allInfo);
+    }
+
+    return Pokemon.pokemon.findOrCreate({
+      where: { name: allInfo.map((p: SchemaPokemon) => p.name) },
+    });
   } catch (error: any) {
     console.error(error.message);
     return error.message;

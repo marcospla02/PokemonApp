@@ -13,10 +13,10 @@ export default async function getTypes() {
       (typeName: NameType) => typeName.name
     );
     typesApiToDb.forEach((type: string) => {
-      Type.poke_type.findOrCreate({ where: { name: type } });
+      Type.type.findOrCreate({ where: { name: type } });
     });
 
-    return await Type.poke_type.findAll();
+    return await Type.type.findAll();
   } catch (error: any) {
     console.error(error.message);
   }

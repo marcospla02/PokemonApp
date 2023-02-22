@@ -13,16 +13,16 @@ const sequelize = new Sequelize(
   }
 );
 
-Pokemons(sequelize);
 Types(sequelize);
+Pokemons(sequelize);
 
-const { poke_type, pokemon } = sequelize.models;
+const { type, pokemon } = sequelize.models;
 
-poke_type.belongsToMany(pokemon, { through: "Pokemon_Type" }); // the name of the model, no the name file
-pokemon.belongsToMany(poke_type, { through: "Pokemon_Type" });
+type.belongsToMany(pokemon, { through: "Pokemon_Type" }); // the name of the model, no the name file
+pokemon.belongsToMany(type, { through: "Pokemon_Type" });
 
 export default {
-  poke_type,
+  type,
   pokemon,
   sequelize,
 };

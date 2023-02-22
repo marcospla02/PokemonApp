@@ -1,11 +1,11 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Sequelize } from "sequelize";
 
-const Pokemon = (sequelize: any) => {
+const pokemons = (sequelize: Sequelize) => {
   sequelize.define(
     "pokemon",
     {
       id: {
-        type: DataTypes.UUID, //  sea unico
+        type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
@@ -20,11 +20,11 @@ const Pokemon = (sequelize: any) => {
       Defense: { type: DataTypes.INTEGER },
       Speed: { type: DataTypes.INTEGER },
       img: { type: DataTypes.STRING },
-      types: { type: DataTypes.ARRAY(DataTypes.STRING) },
+      // types: { type: DataTypes.ARRAY(DataTypes.STRING) },
       createdInDb: { type: DataTypes.BOOLEAN, defaultValue: true },
     },
     { timestamps: false }
   );
 };
 
-export default Pokemon;
+export default pokemons;

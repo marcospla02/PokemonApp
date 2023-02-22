@@ -26,9 +26,10 @@ function getPokemonsDb() {
                 "Defense",
                 "Speed",
                 "img",
+                "createdInDb",
             ],
             include: {
-                model: db_2.default.poke_type,
+                model: db_2.default.type,
                 attributes: ["name"],
                 through: {
                     // this is the relationship with Pokemon and poke_type

@@ -12,9 +12,10 @@ export default async function getPokemonsDb() {
       "Defense",
       "Speed",
       "img",
+      "createdInDb",
     ],
     include: {
-      model: Type.poke_type,
+      model: Type.type,
       attributes: ["name"],
       through: {
         // this is the relationship with Pokemon and poke_type

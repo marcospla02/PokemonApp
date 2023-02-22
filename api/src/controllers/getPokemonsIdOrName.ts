@@ -1,6 +1,7 @@
 import axios from "axios";
 import { SchemaPokemon } from "../assets/interfaces";
 import getPokemonsIdInDb from "./getPokemonIdInDb";
+import getPokemonsDb from "./getPokemonsDb";
 
 export default async function getPokemonsIdOrName(
   id: number | string,
@@ -8,7 +9,7 @@ export default async function getPokemonsIdOrName(
 ) {
   try {
     let pokemons;
-    //todo esto es para la api, tengoq ue hacer lo mismo para mi bbdd
+    //todo esto es para la api, tengo que hacer lo mismo para mi bbdd
     if (name) {
       pokemons = await axios(`https://pokeapi.co/api/v2/pokemon/${name}`);
     } else if (id) {
@@ -18,7 +19,7 @@ export default async function getPokemonsIdOrName(
     const poke: SchemaPokemon = await pokemons?.data;
     const infoPoke = {
       name: poke.name,
-      life: poke.life,
+      life: poke.stats[0].base_stat,
       height: poke.height,
       weight: poke.weight,
       Attack: poke.stats[1].base_stat,
@@ -28,7 +29,20 @@ export default async function getPokemonsIdOrName(
       img: poke.sprites.versions["generation-v"]["black-white"].animated
         .front_default,
     };
-    return await infoPoke;
+
+    const dbPokemon = await getPokemonsDb();
+
+    const findPokemon =
+      dbPokemon &&
+      dbPokemon.find((poke) => {
+        const nameDb: string = poke.getDataValue("name");
+        return nameDb?.toLowerCase() === name?.toLowerCase();
+      });
+
+    if (findPokemon) {
+      console.log("'estoy en findPokemon'");
+      return findPokemon;
+    } else if (infoPoke) return infoPoke;
   } catch (error: any) {
     console.error("error in getPokemonsId:", error.message);
     return error.message;

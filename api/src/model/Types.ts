@@ -1,8 +1,8 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Sequelize } from "sequelize";
 
-const Type = (sequelize: any) => {
+const Types = (sequelize: Sequelize) => {
   sequelize.define(
-    "poke_type",
+    "type",
     {
       id: {
         type: DataTypes.UUID, //  sea unico
@@ -18,4 +18,4 @@ const Type = (sequelize: any) => {
   );
 };
 
-export default Type;
+export default Types;

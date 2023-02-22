@@ -8,7 +8,7 @@ export default async function getPokemonsIdInDb(id: string) {
         id: id,
       },
       include: {
-        model: Type.poke_type,
+        model: Type.type,
         attributes: ["name"],
         through: {
           attributes: [],
