@@ -1,17 +1,6 @@
 import Pokemon from "../db";
 import Type from "../db";
-
-interface Body {
-  name: string;
-  life: number;
-  height: number;
-  weight: number;
-  Attack: number;
-  Defense: number;
-  Speed: number;
-  img: string;
-  type: string[];
-}
+import { Body } from "../assets/interfaces";
 
 export default async function newPokemon(body: Body) {
   try {
@@ -29,12 +18,12 @@ export default async function newPokemon(body: Body) {
     });
 
     const findType = await Type.poke_type.findAll({
-      where: { name: body.type },
+      where: { name: body.types },
     });
 
-    newPokemon.setAttributes(findType);
+    // console.log("soy find type:", findType);
+    newPokemon.setDataValue("types", findType);
 
-    console.log("newPokemon", newPokemon);
     return newPokemon;
   } catch (error: any) {
     return error.message;

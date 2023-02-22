@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const getAllPokemons_1 = __importDefault(require("../components/getAllPokemons"));
-const getPokemonsIdOrName_1 = __importDefault(require("../components/getPokemonsIdOrName"));
+const getAllPokemons_1 = __importDefault(require("../controllers/getAllPokemons"));
+const getPokemonsIdOrName_1 = __importDefault(require("../controllers/getPokemonsIdOrName"));
 const router = (0, express_1.Router)();
 router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -28,7 +28,7 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 router.get("/:name", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name } = req.params;
-        const infoApi = yield (0, getPokemonsIdOrName_1.default)(undefined, name);
+        const infoApi = yield (0, getPokemonsIdOrName_1.default)(null, name);
         res.send(infoApi);
     }
     catch (error) {

@@ -34,6 +34,9 @@ export async function getPokemons() {
     const infoDb = await getPokemonsDb();
     const allInfo = await pokeInfo.concat(infoDb);
     return Pokemon.pokemon.bulkCreate(allInfo);
+    // return Pokemon.pokemon.findOrCreate({
+    //   where: { name: allInfo.map((p: SchemaPokemon) => p.name) },
+    // });
   } catch (error: any) {
     console.error(error.message);
     return error.message;

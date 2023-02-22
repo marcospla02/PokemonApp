@@ -12,17 +12,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const newPokemon_1 = __importDefault(require("../controllers/newPokemon"));
-const router = (0, express_1.Router)();
-router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const body = req.body;
-        const created = yield (0, newPokemon_1.default)(body);
-        res.send(created);
-    }
-    catch (error) {
-        res.send(error.message);
-    }
-}));
-exports.default = router;
+const db_1 = __importDefault(require("../db"));
+const db_2 = __importDefault(require("../db"));
+function getPokemonsDb() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const db = yield db_1.default.pokemon.findAll({
+            attributes: [
+                "name",
+                "life",
+                "height",
+                "weight",
+                "Attack",
+                "Defense",
+                "Speed",
+                "img",
+            ],
+            include: {
+                model: db_2.default.poke_type,
+                attributes: ["name"],
+                through: {
+                    // this is the relationship with Pokemon and poke_type
+                    attributes: [],
+                },
+            },
+        });
+        // console.log("soy en db:", db);
+        return db;
+    });
+}
+exports.default = getPokemonsDb;

@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 router.get("/:name", async (req, res) => {
   try {
     const { name } = req.params;
-    const infoApi = await getPokemonsIdOrName(undefined, name);
+    const infoApi = await getPokemonsIdOrName(null, name);
     res.send(infoApi);
   } catch (error: any) {
     return res.send(error.message);

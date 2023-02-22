@@ -1,16 +1,18 @@
 import axios from "axios";
 import { SchemaPokemon } from "../assets/interfaces";
+import getPokemonsIdInDb from "./getPokemonIdInDb";
 
 export default async function getPokemonsIdOrName(
-  id?: number | string,
-  name?: string
+  id: number | string,
+  name: string
 ) {
   try {
     let pokemons;
-    if (id) {
-      pokemons = await axios(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    } else if (name) {
+    //todo esto es para la api, tengoq ue hacer lo mismo para mi bbdd
+    if (name) {
       pokemons = await axios(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    } else if (id) {
+      pokemons = await axios(`https://pokeapi.co/api/v2/pokemon/${id}`);
     }
 
     const poke: SchemaPokemon = await pokemons?.data;

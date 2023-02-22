@@ -12,17 +12,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const newPokemon_1 = __importDefault(require("../controllers/newPokemon"));
-const router = (0, express_1.Router)();
-router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const body = req.body;
-        const created = yield (0, newPokemon_1.default)(body);
-        res.send(created);
-    }
-    catch (error) {
-        res.send(error.message);
-    }
-}));
-exports.default = router;
+const axios_1 = __importDefault(require("axios"));
+const db_1 = __importDefault(require("../db"));
+function getTypes() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const typesApi = yield (0, axios_1.default)("https://pokeapi.co/api/v2/type");
+            const typesApiToDb = yield typesApi.data.results.map((typeName) => typeName.name);
+            typesApiToDb.forEach((type) => {
+                db_1.default.poke_type.findOrCreate({ where: { name: type } });
+            });
+            return yield db_1.default.poke_type.findAll();
+        }
+        catch (error) {
+            console.error(error.message);
+        }
+    });
+}
+exports.default = getTypes;
+getTypes();

@@ -13,12 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const getPokemonsIdOrName_1 = __importDefault(require("../components/getPokemonsIdOrName"));
+const getPokemonsIdOrName_1 = __importDefault(require("../controllers/getPokemonsIdOrName"));
 const router = (0, express_1.Router)();
 router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
-        const pokemonApi = yield (0, getPokemonsIdOrName_1.default)(id);
+        const pokemonApi = yield (0, getPokemonsIdOrName_1.default)(id, null);
         res.send(pokemonApi);
     }
     catch (error) {

@@ -8,7 +8,7 @@ interface NameType {
 
 export default async function getTypes() {
   try {
-    const typesApi = await axios("https://pokeapi.co/api/v2/type?limit=100");
+    const typesApi = await axios("https://pokeapi.co/api/v2/type");
     const typesApiToDb = await typesApi.data.results.map(
       (typeName: NameType) => typeName.name
     );

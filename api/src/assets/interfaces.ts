@@ -26,3 +26,15 @@ export interface Poke {
   name: string;
   url: string;
 }
+
+export interface Body {
+  name: string;
+  life: number;
+  height: number;
+  weight: number;
+  Attack: number;
+  Defense: number;
+  Speed: number;
+  img: string;
+  types: string[];
+}

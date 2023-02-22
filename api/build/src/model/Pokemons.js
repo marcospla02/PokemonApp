@@ -20,6 +20,7 @@ const Pokemon = (sequelize) => {
         Speed: { type: sequelize_1.DataTypes.INTEGER },
         img: { type: sequelize_1.DataTypes.STRING },
         types: { type: sequelize_1.DataTypes.ARRAY(sequelize_1.DataTypes.STRING) },
+        createdInDb: { type: sequelize_1.DataTypes.BOOLEAN, defaultValue: true },
     }, { timestamps: false });
 };
 exports.default = Pokemon;
