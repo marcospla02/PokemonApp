@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
 dotenv.config();
 import { Sequelize } from "sequelize";
+import pokemons from "./model/Pokemon";
+import Types from "./model/Type";
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
-import Pokemons from "./model/Pokemons";
-import Types from "./model/Types";
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pokemondb`,
@@ -14,15 +14,18 @@ const sequelize = new Sequelize(
 );
 
 Types(sequelize);
-Pokemons(sequelize);
+pokemons(sequelize);
+let entries = Object.entries(sequelize.models);
+let capsEntries = entries.map((entry) => [
+  entry[0][0].toUpperCase() + entry[0].slice(1),
+  entry[1],
+]);
 
-const { type, pokemon } = sequelize.models;
+(sequelize.models as any) = Object.fromEntries(capsEntries);
 
-type.belongsToMany(pokemon, { through: "Pokemon_Type" }); // the name of the model, no the name file
-pokemon.belongsToMany(type, { through: "Pokemon_Type" });
+const { Type, Pokemon } = sequelize.models;
 
-export default {
-  type,
-  pokemon,
-  sequelize,
-};
+Pokemon.belongsToMany(Type, { through: "Pokemon_Type" });
+Type.belongsToMany(Pokemon, { through: "Pokemon_Type" }); // the name of the model, no the name file
+
+export { Type, Pokemon, sequelize };

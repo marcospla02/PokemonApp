@@ -1,4 +1,6 @@
 export interface SchemaPokemon {
+  id: number;
+  idPoke: number;
   name: string;
   life: number;
   height: number;

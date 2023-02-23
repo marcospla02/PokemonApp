@@ -10,29 +10,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = require("../db");
-function getPokemonsIdInDb(id) {
+function findNameInDb(name) {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const pokemon = yield db_1.Pokemon.findAll({
-                where: {
-                    id: id,
+        const PokemonDb = yield db_1.Pokemon.findOne({
+            where: { name: name },
+            include: {
+                model: db_1.Type,
+                attributes: ["name"],
+                through: {
+                    attributes: [],
                 },
-                include: {
-                    model: db_1.Type,
-                    attributes: ["name"],
-                    through: {
-                        attributes: [],
-                    },
-                },
-            });
-            if (!pokemon.length)
-                throw new Error("the id was not found");
-            return pokemon;
-        }
-        catch (error) {
-            console.log("Error in pokemonDb:", error.message);
-            return error.message;
-        }
+            },
+        });
+        if (!PokemonDb)
+            throw new Error("the name is not available");
+        return PokemonDb;
     });
 }
-exports.default = getPokemonsIdInDb;
+exports.default = findNameInDb;

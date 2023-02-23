@@ -13,13 +13,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const getPokemonsIdOrName_1 = __importDefault(require("../controllers/getPokemonsIdOrName"));
+const getPokemonIdInDb_1 = __importDefault(require("../controllers/getPokemonIdInDb"));
+// import getPokemonsIdOrName from "../controllers/getPokemonsIdOrName";
 const router = (0, express_1.Router)();
 router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const id = req.params.id;
-        const pokemonApi = yield (0, getPokemonsIdOrName_1.default)(id, null);
-        res.send(pokemonApi);
+        const { id } = req.params;
+        if (!id)
+            throw new Error("the id are required");
+        const pokemonDb = yield (0, getPokemonIdInDb_1.default)(id);
+        // const pokemonApi = await getPokemonsIdOrName(id, null);
+        res.send(pokemonDb);
     }
     catch (error) {
         res.send(error.message);

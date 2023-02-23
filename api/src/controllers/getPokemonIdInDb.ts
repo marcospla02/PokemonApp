@@ -1,21 +1,21 @@
-import Pokemon from "../db";
-import Type from "../db";
+import { Pokemon, Type } from "../db";
 
 export default async function getPokemonsIdInDb(id: string) {
   try {
-    const pokemon = await Pokemon.pokemon.findAll({
+    const pokemon = await Pokemon.findAll({
       where: {
         id: id,
       },
       include: {
-        model: Type.type,
+        model: Type,
         attributes: ["name"],
         through: {
           attributes: [],
         },
       },
     });
-    console.log("soy pokemonDb:", pokemon);
+
+    if (!pokemon.length) throw new Error("the id was not found");
 
     return pokemon;
   } catch (error: any) {

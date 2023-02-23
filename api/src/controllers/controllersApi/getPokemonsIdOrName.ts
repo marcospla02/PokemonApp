@@ -1,7 +1,7 @@
 import axios from "axios";
-import { SchemaPokemon } from "../assets/interfaces";
-import getPokemonsIdInDb from "./getPokemonIdInDb";
-import getPokemonsDb from "./getPokemonsDb";
+import { SchemaPokemon } from "../../assets/interfaces";
+
+// ALL THIS CODE IS FOR API, BUT I WORK FROM THE DATABASE
 
 export default async function getPokemonsIdOrName(
   id: number | string,
@@ -9,7 +9,6 @@ export default async function getPokemonsIdOrName(
 ) {
   try {
     let pokemons;
-    //todo esto es para la api, tengo que hacer lo mismo para mi bbdd
     if (name) {
       pokemons = await axios(`https://pokeapi.co/api/v2/pokemon/${name}`);
     } else if (id) {
@@ -30,21 +29,9 @@ export default async function getPokemonsIdOrName(
         .front_default,
     };
 
-    const dbPokemon = await getPokemonsDb();
-
-    const findPokemon =
-      dbPokemon &&
-      dbPokemon.find((poke) => {
-        const nameDb: string = poke.getDataValue("name");
-        return nameDb?.toLowerCase() === name?.toLowerCase();
-      });
-
-    if (findPokemon) {
-      console.log("'estoy en findPokemon'");
-      return findPokemon;
-    } else if (infoPoke) return infoPoke;
+    return infoPoke;
   } catch (error: any) {
-    console.error("error in getPokemonsId:", error.message);
+    console.error("error in getPokemonsIdOrName:", error.message);
     return error.message;
   }
 }

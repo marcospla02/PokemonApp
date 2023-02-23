@@ -8,6 +8,7 @@ const pokemons = (sequelize: Sequelize) => {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
+        allowNull: false,
       },
       name: {
         type: DataTypes.STRING,
@@ -20,8 +21,8 @@ const pokemons = (sequelize: Sequelize) => {
       Defense: { type: DataTypes.INTEGER },
       Speed: { type: DataTypes.INTEGER },
       img: { type: DataTypes.STRING },
-      // types: { type: DataTypes.ARRAY(DataTypes.STRING) },
-      createdInDb: { type: DataTypes.BOOLEAN, defaultValue: true },
+      typesApi: { type: DataTypes.ARRAY(DataTypes.STRING) },
+      idPoke: { type: DataTypes.INTEGER, defaultValue: null },
     },
     { timestamps: false }
   );

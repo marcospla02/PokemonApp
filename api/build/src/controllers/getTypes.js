@@ -13,16 +13,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
-const db_1 = __importDefault(require("../db"));
+const db_1 = require("../db");
 function getTypes() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const typesApi = yield (0, axios_1.default)("https://pokeapi.co/api/v2/type");
             const typesApiToDb = yield typesApi.data.results.map((typeName) => typeName.name);
             typesApiToDb.forEach((type) => {
-                db_1.default.type.findOrCreate({ where: { name: type } });
+                db_1.Type.findOrCreate({ where: { name: type } });
             });
-            return yield db_1.default.type.findAll();
+            return yield db_1.Type.findAll();
         }
         catch (error) {
             console.error(error.message);

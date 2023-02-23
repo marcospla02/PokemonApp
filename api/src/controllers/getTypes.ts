@@ -1,5 +1,5 @@
 import axios from "axios";
-import Type from "../db";
+import { Type } from "../db";
 
 interface NameType {
   id: any;
@@ -13,10 +13,10 @@ export default async function getTypes() {
       (typeName: NameType) => typeName.name
     );
     typesApiToDb.forEach((type: string) => {
-      Type.type.findOrCreate({ where: { name: type } });
+      Type.findOrCreate({ where: { name: type } });
     });
 
-    return await Type.type.findAll();
+    return await Type.findAll();
   } catch (error: any) {
     console.error(error.message);
   }

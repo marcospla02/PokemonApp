@@ -13,20 +13,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
+// ALL THIS CODE IS FOR API, BUT I WORK FROM THE DATABASE
 function getPokemonsIdOrName(id, name) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             let pokemons;
-            if (id) {
-                pokemons = yield (0, axios_1.default)(`https://pokeapi.co/api/v2/pokemon/${id}`);
-            }
-            else if (name) {
+            if (name) {
                 pokemons = yield (0, axios_1.default)(`https://pokeapi.co/api/v2/pokemon/${name}`);
+            }
+            else if (id) {
+                pokemons = yield (0, axios_1.default)(`https://pokeapi.co/api/v2/pokemon/${id}`);
             }
             const poke = yield (pokemons === null || pokemons === void 0 ? void 0 : pokemons.data);
             const infoPoke = {
                 name: poke.name,
-                life: poke.life,
+                life: poke.stats[0].base_stat,
                 height: poke.height,
                 weight: poke.weight,
                 Attack: poke.stats[1].base_stat,
@@ -36,10 +37,10 @@ function getPokemonsIdOrName(id, name) {
                 img: poke.sprites.versions["generation-v"]["black-white"].animated
                     .front_default,
             };
-            return yield infoPoke;
+            return infoPoke;
         }
         catch (error) {
-            console.error("error in getPokemonsId:", error.message);
+            console.error("error in getPokemonsIdOrName:", error.message);
             return error.message;
         }
     });

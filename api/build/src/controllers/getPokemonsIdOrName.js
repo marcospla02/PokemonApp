@@ -13,12 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
-const getPokemonsDb_1 = __importDefault(require("./getPokemonsDb"));
+// ALL THIS CODE IS FOR API, BUT I WORK FROM THE DATABASE
 function getPokemonsIdOrName(id, name) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             let pokemons;
-            //todo esto es para la api, tengo que hacer lo mismo para mi bbdd
             if (name) {
                 pokemons = yield (0, axios_1.default)(`https://pokeapi.co/api/v2/pokemon/${name}`);
             }
@@ -38,21 +37,10 @@ function getPokemonsIdOrName(id, name) {
                 img: poke.sprites.versions["generation-v"]["black-white"].animated
                     .front_default,
             };
-            const dbPokemon = yield (0, getPokemonsDb_1.default)();
-            const findPokemon = dbPokemon &&
-                dbPokemon.find((poke) => {
-                    const nameDb = poke.getDataValue("name");
-                    return (nameDb === null || nameDb === void 0 ? void 0 : nameDb.toLowerCase()) === (name === null || name === void 0 ? void 0 : name.toLowerCase());
-                });
-            if (findPokemon) {
-                console.log("'estoy en findPokemon'");
-                return findPokemon;
-            }
-            else if (infoPoke)
-                return infoPoke;
+            return infoPoke;
         }
         catch (error) {
-            console.error("error in getPokemonsId:", error.message);
+            console.error("error in getPokemonsIdOrName:", error.message);
             return error.message;
         }
     });

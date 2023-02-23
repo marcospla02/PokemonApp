@@ -1,9 +1,10 @@
-import Pokemon from "../db";
-import Type from "../db";
+import { Pokemon, Type } from "../db";
 
 export default async function getPokemonsDb() {
-  const db = await Pokemon.pokemon.findAll({
+  const db = await Pokemon.findAll({
     attributes: [
+      "id",
+      "idPoke",
       "name",
       "life",
       "height",
@@ -12,10 +13,10 @@ export default async function getPokemonsDb() {
       "Defense",
       "Speed",
       "img",
-      "createdInDb",
+      "typesApi",
     ],
     include: {
-      model: Type.type,
+      model: Type,
       attributes: ["name"],
       through: {
         // this is the relationship with Pokemon and poke_type
@@ -23,6 +24,7 @@ export default async function getPokemonsDb() {
       },
     },
   });
+
   // console.log("soy en db:", db);
   return db;
 }

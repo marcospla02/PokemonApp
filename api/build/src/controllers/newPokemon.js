@@ -8,18 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const db_1 = __importDefault(require("../db"));
-const db_2 = __importDefault(require("../db"));
+const db_1 = require("../db");
 function newPokemon(body) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!body.name)
                 throw new Error("the name is required");
-            let newPokemon = yield db_1.default.pokemon.create({
+            let newPokemon = yield db_1.Pokemon.create({
                 name: body.name,
                 life: body.life,
                 height: body.height,
@@ -29,11 +25,12 @@ function newPokemon(body) {
                 Speed: body.Speed,
                 img: body.img,
             });
-            const findType = yield db_2.default.type.findAll({
+            const findType = yield db_1.Type.findAll({
                 where: { name: body.types },
             });
             // console.log("soy find type:", findType);
-            newPokemon.setDataValue("types", findType);
+            // newPokemon.setDataValue("types", findType);
+            yield newPokemon.addType(findType);
             return newPokemon;
         }
         catch (error) {

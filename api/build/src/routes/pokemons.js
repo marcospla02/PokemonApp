@@ -13,12 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const findNameInDb_1 = __importDefault(require("../controllers/findNameInDb"));
 const getAllPokemons_1 = __importDefault(require("../controllers/getAllPokemons"));
-const getPokemonsIdOrName_1 = __importDefault(require("../controllers/getPokemonsIdOrName"));
+// import getPokemonsIdOrName from "../controllers/controllersApi/getPokemonsIdOrName";
 const router = (0, express_1.Router)();
 router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const info = yield (0, getAllPokemons_1.default)();
+        // const info = await getPokemonsDb();
         res.send(info);
     }
     catch (error) {
@@ -28,8 +30,9 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 router.get("/:name", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name } = req.params;
-        const infoApi = yield (0, getPokemonsIdOrName_1.default)(null, name);
-        res.send(infoApi);
+        const infoDb = yield (0, findNameInDb_1.default)(name);
+        // const infoApi = await getPokemonsIdOrName(null, name);
+        res.send(infoDb);
     }
     catch (error) {
         return res.send(error.message);

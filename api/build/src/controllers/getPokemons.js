@@ -14,12 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPokemons = void 0;
 const axios_1 = __importDefault(require("axios"));
-const getPokemonsDb_1 = __importDefault(require("./getPokemonsDb"));
-const db_1 = __importDefault(require("../db"));
+const db_1 = require("../db");
+let num = 0;
 function getPokemons() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const pokemons = yield (0, axios_1.default)("https://pokeapi.co/api/v2/pokemon?limit=40");
+            const pokemons = yield (0, axios_1.default)("https://pokeapi.co/api/v2/pokemon?limit=100");
             const infoApi = yield pokemons.data.results.map((poke) => __awaiter(this, void 0, void 0, function* () {
                 const info = yield (0, axios_1.default)(poke.url);
                 return info;
@@ -30,6 +30,7 @@ function getPokemons() {
             }, []);
             const pokeInfo = yield apiUrl.map((p) => {
                 const allPokeInfo = {
+                    idPoke: p.id,
                     name: p.name,
                     life: p.stats[0].base_stat,
                     height: p.height,
@@ -37,23 +38,22 @@ function getPokemons() {
                     Attack: p.stats[1].base_stat,
                     Defense: p.stats[2].base_stat,
                     Speed: p.stats[5].base_stat,
-                    types: p.types.map((t) => t.type.name),
+                    typesApi: p.types.map((t) => t.type.name),
                     img: p.sprites.versions["generation-v"]["black-white"].animated
                         .front_default,
                 };
                 return allPokeInfo;
             });
-            const infoDb = yield (0, getPokemonsDb_1.default)();
-            const allInfo = yield pokeInfo.concat(infoDb);
-            let num = 0;
+            // const infoDb = await getPokemonsDb();
+            // const allInfo = await pokeInfo.concat(infoDb);
             while (num < 1) {
-                console.log("soy num antes:", num);
+                console.log(num);
                 num++;
-                console.log("soy num desp:", num);
-                return db_1.default.pokemon.bulkCreate(allInfo);
+                console.log("despues del incremnto", num);
+                return db_1.Pokemon.bulkCreate(pokeInfo);
             }
-            return db_1.default.pokemon.findOrCreate({
-                where: { name: allInfo.map((p) => p.name) },
+            return db_1.Pokemon.findOrCreate({
+                where: { name: pokeInfo.map((p) => p.name) },
             });
         }
         catch (error) {

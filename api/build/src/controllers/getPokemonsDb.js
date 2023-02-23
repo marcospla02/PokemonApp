@@ -8,16 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const db_1 = __importDefault(require("../db"));
-const db_2 = __importDefault(require("../db"));
+const db_1 = require("../db");
 function getPokemonsDb() {
     return __awaiter(this, void 0, void 0, function* () {
-        const db = yield db_1.default.pokemon.findAll({
+        const db = yield db_1.Pokemon.findAll({
             attributes: [
+                "id",
+                "idPoke",
                 "name",
                 "life",
                 "height",
@@ -26,10 +24,10 @@ function getPokemonsDb() {
                 "Defense",
                 "Speed",
                 "img",
-                "createdInDb",
+                "typesApi",
             ],
             include: {
-                model: db_2.default.type,
+                model: db_1.Type,
                 attributes: ["name"],
                 through: {
                     // this is the relationship with Pokemon and poke_type

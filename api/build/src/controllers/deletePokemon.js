@@ -8,26 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const axios_1 = __importDefault(require("axios"));
-const db_1 = __importDefault(require("../db"));
-function getTypes() {
+const db_1 = require("../db");
+function deletePokemon(id) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const typesApi = yield (0, axios_1.default)("https://pokeapi.co/api/v2/type?limit=100");
-            const typesApiToDb = yield typesApi.data.results.map((typeName) => typeName.name);
-            typesApiToDb.forEach((type) => {
-                db_1.default.poke_type.findOrCreate({ where: { name: type } });
-            });
-            return yield db_1.default.poke_type.findAll();
+            db_1.Pokemon.destroy({ where: { id: id } });
         }
         catch (error) {
-            console.error(error.message);
+            return error.message;
         }
     });
 }
-exports.default = getTypes;
-getTypes();
+exports.default = deletePokemon;

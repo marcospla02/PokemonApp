@@ -12,13 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const db_1 = __importDefault(require("../db"));
-const getPokemons_1 = require("./getPokemons");
-function getAllPokemons() {
-    return __awaiter(this, void 0, void 0, function* () {
-        yield (0, getPokemons_1.getPokemons)();
-        const result = yield db_1.default.pokemon.findAll();
-        return result;
-    });
-}
-exports.default = getAllPokemons;
+const express_1 = require("express");
+const deletePokemon_1 = __importDefault(require("../controllers/deletePokemon"));
+const router = (0, express_1.Router)();
+router.delete("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        if (!id)
+            throw new Error("id is required");
+        yield (0, deletePokemon_1.default)(id);
+        res.send({ msg: "Pokemon deleted successfully" });
+    }
+    catch (error) {
+        res.send(error.message);
+    }
+}));
+exports.default = router;
