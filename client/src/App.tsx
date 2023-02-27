@@ -1,9 +1,11 @@
-import React from "react";
+import "./App.css";
+import { NavBar } from "./components";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header"></header>
+      <NavBar />
+      <h1>hola</h1>
     </div>
   );
 }
