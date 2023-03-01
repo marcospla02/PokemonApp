@@ -1,11 +1,17 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { NavBar } from "./components";
+import { Favorites, Home, Profile } from "./pages";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <NavBar />
-      <h1>hola</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/favorites" element={<Favorites />} />
+      </Routes>
     </div>
   );
 }

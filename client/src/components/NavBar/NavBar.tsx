@@ -3,10 +3,10 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
+import { ThemeProvider } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import * as React from "react";
-import styled from "styled-components";
+import { Link, theme } from ".././Colors/Colors";
 import MenuTable from "./MenuTable";
 import NavBarMobile from "./NavBarMobile";
 import SearchBar from "./Search/SearchBar";
@@ -40,16 +40,9 @@ export default function PrimarySearchAppBar() {
 
   const mobileMenuId = "primary-search-account-menu-mobile";
 
-  const Link = styled.a`
-    color: black;
-    position: absolute;
-    top: 20px;
-    padding-left: 2%;
-  `;
-
   return (
-    <div>
-      <AppBar position="fixed">
+    <ThemeProvider theme={theme}>
+      <AppBar position="fixed" sx={{ bgcolor: "background.paper" }}>
         <Toolbar>
           <Link href="/">PokemonApp</Link>
           <SearchBar />
@@ -108,6 +101,6 @@ export default function PrimarySearchAppBar() {
           setMobileMoreAnchorEl={setMobileMoreAnchorEl}
         />
       }
-    </div>
+    </ThemeProvider>
   );
 }
