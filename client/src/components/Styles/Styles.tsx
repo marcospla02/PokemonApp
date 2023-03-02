@@ -1,11 +1,10 @@
 import { createTheme } from "@mui/material/styles";
-import styled from "styled-components";
 
 export const theme = createTheme({
   palette: {
     background: {
       // paper: "#29a0d3",
-      paper: "#ffdd00f7",
+      paper: "rgb(228, 233, 233)",
     },
 
     text: {
@@ -14,10 +13,3 @@ export const theme = createTheme({
     },
   },
 });
-
-export const Link = styled.a`
-  color: black;
-  position: absolute;
-  top: 20px;
-  padding-left: 2%;
-`;

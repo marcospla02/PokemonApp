@@ -10,14 +10,12 @@ export interface Pokemons {
   Speed: number;
   img: string;
   stats: Stats[];
-  typesApi: Type[];
-  types: Type[];
+  typesApi: string[];
+  types: any;
 }
 
 export interface Type {
-  type: {
-    name: string;
-  };
+  name: string;
 }
 
 export interface Stats {

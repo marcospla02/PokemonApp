@@ -1,2 +1,2 @@
 export * from "./Pokemons";
-export * from "./localStorage";
+export * from "./types";

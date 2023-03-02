@@ -1,4 +1,4 @@
-import { Actions } from "@/models/localStorage";
+import { Actions } from "@/models/types";
 import { Pokemons } from "@/models/Pokemons";
 import {
   getLocalStorage,

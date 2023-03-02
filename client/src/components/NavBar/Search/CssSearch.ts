@@ -18,6 +18,7 @@ export const SearchCss = styled.input`
 `;
 
 export const Button = styled.button`
+  background-color: var(--ligth-grey);
   height: 30px;
   border: 0.5px;
   border-radius: 0 50px 50px 0;
@@ -26,7 +27,7 @@ export const Button = styled.button`
   cursor: pointer;
   transition: 1s;
   :hover {
-    background-color: #ffed00;
+    background-color: #c0d4eb;
     transition: 1s;
   }
 `;

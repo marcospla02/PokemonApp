@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, SearchCss } from "./CssSearch";
 import SearchIcon from "@mui/icons-material/Search";
+import { getPokemonByName, useAppDispatch } from "@/redux";
 
 interface EventTarget {
   addEventListener(
@@ -29,6 +30,8 @@ const SearchBar = () => {
 
   const [error, setError] = useState({ message: "" });
 
+  const dispatch = useAppDispatch();
+
   const handleSearch = (event: React.SyntheticEvent) => {
     let target = event.target as HTMLInputElement;
 
@@ -43,6 +46,7 @@ const SearchBar = () => {
     }
     if (!error.message) {
       //hago el dispatch
+      dispatch(getPokemonByName(searchPokemon.name));
     }
   };
 

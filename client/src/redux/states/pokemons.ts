@@ -9,10 +9,15 @@ export const pokemonsSlice = createSlice({
   initialState,
   reducers: {
     getPokemons: (state, action: PayloadAction<Pokemons>) => {
-      console.log("soy action.payload", action.payload);
-
-      state.push(action.payload);
+      if (
+        state.length === 0 ||
+        state.filter((poke) => poke.id === action.payload.id).length === 0
+      )
+        return [...state, action.payload];
     },
+    // getByName: (state, action: PayloadAction<Pokemons>) => {
+    //   return [action.payload];
+    // },
   },
 });
 

@@ -1,17 +1,14 @@
-import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { NavBar } from "./components";
-import { Favorites, Home, Profile } from "./pages";
+import Switch from "./components/Switch/Switch";
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/favorites" element={<Favorites />} />
-      </Routes>
+      <main>
+        <Switch />
+      </main>
     </div>
   );
 }
