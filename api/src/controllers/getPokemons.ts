@@ -28,8 +28,9 @@ export async function getPokemons() {
         Defense: p.stats[2].base_stat,
         Speed: p.stats[5].base_stat,
         typesApi: p.types.map((t) => t.type.name),
-        img: p.sprites.versions["generation-v"]["black-white"].animated
-          .front_default,
+        img: p.sprites.other.dream_world.front_default,
+        // img: p.sprites.versions["generation-v"]["black-white"].animated
+        //   .front_default,
       };
       return allPokeInfo;
     });
