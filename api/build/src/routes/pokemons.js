@@ -30,8 +30,10 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 router.get("/:name", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name } = req.params;
-        const infoDb = yield (0, findNameInDb_1.default)(name);
-        // const infoApi = await getPokemonsIdOrName(null, name);
+        const infoDb = yield (0, findNameInDb_1.default)(name.toLocaleLowerCase());
+        if (!infoDb)
+            return res.status(404).send(`couldn't find "${name}"
+         please come back to the Home`);
         res.send(infoDb);
     }
     catch (error) {

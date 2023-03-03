@@ -22,8 +22,7 @@ function findNameInDb(name) {
                 },
             },
         });
-        if (!PokemonDb)
-            throw new Error("the name is not available");
+        // if (!PokemonDb) throw new Error("the name is not available");
         return PokemonDb;
     });
 }
