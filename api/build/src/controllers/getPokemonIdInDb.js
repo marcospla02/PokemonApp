@@ -13,10 +13,8 @@ const db_1 = require("../db");
 function getPokemonsIdInDb(id) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const pokemon = yield db_1.Pokemon.findAll({
-                where: {
-                    id: id,
-                },
+            const pokemon = yield db_1.Pokemon.findOne({
+                where: { id: id },
                 include: {
                     model: db_1.Type,
                     attributes: ["name"],
@@ -25,7 +23,7 @@ function getPokemonsIdInDb(id) {
                     },
                 },
             });
-            if (!pokemon.length)
+            if (!pokemon)
                 throw new Error("the id was not found");
             return pokemon;
         }
