@@ -16,8 +16,8 @@ export const SearchCss = styled.input`
     border: none;
   }
 
-  .error {
-    color: red;
+  :disabled {
+    opacity: 0;
   }
 `;
 
@@ -30,8 +30,14 @@ export const Button = styled.button`
   padding: 2px 5px;
   cursor: pointer;
   transition: 1s;
+
   :hover {
     background-color: #c0d4eb;
     transition: 1s;
+  }
+
+  :disabled {
+    opacity: 0;
+    cursor: auto;
   }
 `;

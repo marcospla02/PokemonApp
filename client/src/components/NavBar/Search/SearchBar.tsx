@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, SearchCss } from "./CssSearch";
 import SearchIcon from "@mui/icons-material/Search";
 import { getPokemonByName, useAppDispatch } from "@/redux";
+import { useLocation } from "react-router-dom";
 
 interface EventTarget {
   addEventListener(
@@ -17,16 +18,18 @@ interface EventTarget {
   ): void;
 }
 
-interface SyntheticEvent {
-  bubbles: boolean;
-  cancelable: boolean;
-  currentTarget: EventTarget;
-}
-
 const SearchBar = () => {
+  const [disabled, setDisable] = useState<boolean>(false);
   const [searchPokemon, setSearchPokemon] = useState({
     name: "",
   });
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.includes("/detail")) {
+      setDisable(true);
+    }
+  }, []);
 
   const [error, setError] = useState({ message: "" });
 
@@ -53,9 +56,10 @@ const SearchBar = () => {
       <SearchCss
         placeholder="Search pokemon..."
         onChange={handleSearch}
+        disabled={disabled}
       ></SearchCss>
 
-      <Button type="submit" onClick={handleSumbit}>
+      <Button type="submit" onClick={handleSumbit} disabled={disabled}>
         <SearchIcon />
       </Button>
     </>

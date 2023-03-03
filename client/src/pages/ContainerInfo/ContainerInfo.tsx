@@ -1,18 +1,32 @@
 import { Card, CardPokemon } from "@/components";
+import { ContainerError } from "@/components/Styles/ContainerInfoCss";
 import { Pokemons } from "@/models";
 import { useAppSelector } from "@/redux";
+import pokemonConfundido from "../../../public/pokemon-confundido.gif";
 
 const ContainerInfo = ({ tenPokemons }: any) => {
   const search = useAppSelector((state) => state.byName);
   const error: string = useAppSelector((state) => state.error);
-
+  // tengo que hacerlo dinamico
   tenPokemons = search.length ? search : tenPokemons;
 
   return (
     <div>
       <Card>
         {error ? (
-          <h1>{error}</h1>
+          <ContainerError>
+            <h2>{error}</h2>
+            <div className="image">
+              <a href="/">
+                <img
+                  src={pokemonConfundido}
+                  alt="pokemons confundido"
+                  height="200px"
+                  width="250px"
+                />
+              </a>
+            </div>
+          </ContainerError>
         ) : tenPokemons?.length ? (
           tenPokemons?.map((poke: Pokemons) => {
             return (
