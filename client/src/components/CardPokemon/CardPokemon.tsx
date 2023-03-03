@@ -19,7 +19,10 @@ const CardPokemon = (props: Pokemons) => {
     // dispatch(addFavorites())
   };
 
-  let name = props.name.charAt(0).toUpperCase() + props.name.slice(1);
+  let name: string =
+    props.name.charAt(0) !== props.name.charAt(0).toUpperCase()
+      ? props.name.charAt(0).toUpperCase() + props.name.slice(1)
+      : props.name;
 
   return (
     <Container>

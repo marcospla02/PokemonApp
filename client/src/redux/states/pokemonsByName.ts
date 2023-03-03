@@ -9,7 +9,7 @@ export const byNameSlice = createSlice({
   reducers: {
     getByName: (state, action: PayloadAction<Pokemons>) => {
       if (state.filter((poke) => poke.id === action.payload.id)) {
-        return [...state, action.payload];
+        return [action.payload];
       }
     },
   },

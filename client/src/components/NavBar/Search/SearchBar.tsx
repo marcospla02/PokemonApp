@@ -36,11 +36,9 @@ const SearchBar = () => {
     let target = event.target as HTMLInputElement;
 
     setSearchPokemon({ ...searchPokemon, name: target.value });
-    console.log("soy el verdadero", searchPokemon);
   };
 
   const handleSumbit = () => {
-    // despacho la action de buscar
     if (searchPokemon.name === "") {
       setError({ ...error, message: "the name is recuired" });
     }
@@ -56,6 +54,7 @@ const SearchBar = () => {
         placeholder="Search pokemon..."
         onChange={handleSearch}
       ></SearchCss>
+
       <Button type="submit" onClick={handleSumbit}>
         <SearchIcon />
       </Button>

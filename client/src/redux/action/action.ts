@@ -3,6 +3,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { getPokemons } from "../states/pokemons";
 import { getByName } from "../states/pokemonsByName";
 import { getDetail } from "../states/detail";
+import { messageError } from "../states/error";
 
 export const getAllPokemons = () => (dispatch: Dispatch) => {
   axios
@@ -19,7 +20,7 @@ export const getPokemonByName = (name: string) => (dispatch: Dispatch) => {
     .then((response) => {
       return dispatch(getByName(response.data));
     })
-    .catch((error) => console.error(error));
+    .catch((error) => dispatch(messageError(error.response.data)));
 };
 
 export const pokemonsDetail =

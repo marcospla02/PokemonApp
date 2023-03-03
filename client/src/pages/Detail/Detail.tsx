@@ -1,7 +1,15 @@
 import { ContainerDetail, Img } from "@/components";
 import { pokemonsDetail, useAppDispatch, useAppSelector } from "@/redux";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import {
+  ProgressBarsAttack,
+  ProgressBarsDefense,
+  ProgressBarsHeigth,
+  ProgressBarsLife,
+  ProgressBarsSpeed,
+} from "./SliderDetail";
 
 const Detail = () => {
   const detail = useAppSelector((state) => state.detail);
@@ -18,6 +26,9 @@ const Detail = () => {
 
   return (
     <ContainerDetail>
+      <a href="/" className="a-detail">
+        <ArrowBackIcon />
+      </a>
       <Img>
         <img
           src={detail.img}
@@ -30,26 +41,35 @@ const Detail = () => {
         <h1>
           <strong>{name}</strong>
         </h1>
-        <p>
-          <strong>Attack: {detail.Attack}</strong>
-        </p>
-        <p>
-          <strong>Defense: {detail.Defense}</strong>
-        </p>
-        <p>
-          <strong>Height: {detail.height}</strong>
-        </p>
-
-        <p>
-          <strong>Life: {detail.life}</strong>
-        </p>
-        <p>
-          <strong>Type:</strong>
-        </p>
-        {types.length &&
-          types.map((t: any) => {
-            return <strong> -{t.hasOwnProperty("name") ? t.name : t}</strong>;
-          })}
+        <div className="info-all">
+          <p>
+            <strong>Attack: {detail.Attack}</strong>
+            <ProgressBarsAttack attack={detail.Attack} />
+          </p>
+          <p>
+            <strong>Defense: {detail.Defense}</strong>
+            <ProgressBarsDefense defense={detail.Defense} />
+          </p>
+          <p>
+            <strong>Height: {detail.height}</strong>
+            <ProgressBarsHeigth heigth={detail.height} />
+          </p>
+          <p>
+            <strong>Speed: {detail.Speed}</strong>
+            <ProgressBarsSpeed speed={detail.Speed} />
+          </p>
+          <p>
+            <strong>Life: {detail.life}</strong>
+            <ProgressBarsLife life={detail.life} />
+          </p>
+          <p>
+            <strong>Type:</strong>
+          </p>
+          {types.length &&
+            types.map((t: any) => {
+              return <strong> -{t.hasOwnProperty("name") ? t.name : t}</strong>;
+            })}
+        </div>
       </div>
     </ContainerDetail>
   );

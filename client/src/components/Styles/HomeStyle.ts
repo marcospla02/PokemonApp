@@ -6,7 +6,6 @@ export const ContainerImg = styled.div`
   justify-content: center;
   justify-items: center;
   justify-self: center;
-  margin-left: 80%;
   height: 100%;
   padding: 0 10px;
 `;

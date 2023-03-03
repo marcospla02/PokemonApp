@@ -15,6 +15,10 @@ export const SearchCss = styled.input`
     outline: none;
     border: none;
   }
+
+  .error {
+    color: red;
+  }
 `;
 
 export const Button = styled.button`

@@ -1,6 +1,7 @@
 import { Pokemons } from "@/models/Pokemons";
 import { configureStore } from "@reduxjs/toolkit";
 import { detailSlice } from "../states/detail";
+import { errorSlice } from "../states/error";
 import { favoritesSlice } from "../states/favorites";
 import { pokemonsSlice } from "../states/pokemons";
 import { byNameSlice } from "../states/pokemonsByName";
@@ -10,6 +11,7 @@ export interface AppStore {
   favorites: Pokemons[];
   byName: Pokemons[];
   detail: Pokemons;
+  error: string;
 }
 
 export const store = configureStore<AppStore>({
@@ -18,6 +20,7 @@ export const store = configureStore<AppStore>({
     pokemons: pokemonsSlice.reducer,
     byName: byNameSlice.reducer,
     detail: detailSlice.reducer,
+    error: errorSlice.reducer,
   },
 });
 

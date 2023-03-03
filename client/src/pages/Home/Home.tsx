@@ -1,6 +1,4 @@
-import { Card, CardPokemon } from "@/components";
 import { ContainerHome, ContainerImg } from "@/components/Styles/HomeStyle";
-import { Pokemons } from "@/models";
 import {
   getAllPokemons,
   getPokemons,
@@ -11,6 +9,7 @@ import { Stack } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import { useEffect, useState } from "react";
 import pokebola from "../../../public/pokebola.gif";
+import ContainerInfo from "../ContainerInfo/ContainerInfo";
 
 const Home = () => {
   const [page, setPage] = useState<number>(1);
@@ -65,40 +64,8 @@ const Home = () => {
               onChange={handlePagination}
             />
           </Stack>
+          <ContainerInfo tenPokemons={tenPokemons} />
 
-          <Card>
-            {tenPokemons?.length ? (
-              tenPokemons?.map((poke: Pokemons) => {
-                return (
-                  <div key={poke.id}>
-                    <CardPokemon
-                      key={poke.id}
-                      id={poke.id}
-                      idPoke={poke.idPoke}
-                      name={poke.name}
-                      life={poke.life}
-                      height={poke.height}
-                      weight={poke.weight}
-                      Attack={poke.Attack}
-                      Defense={poke.Defense}
-                      Speed={poke.Speed}
-                      img={poke.img}
-                      stats={[]}
-                      typesApi={poke.typesApi}
-                      types={
-                        poke.types.map((t: any) => {
-                          return t;
-                        })
-                        // pokemon.types.length !== 0 ? pokemon.types : pokemon.typesApi
-                      }
-                    />
-                  </div>
-                );
-              })
-            ) : (
-              <h1>No hay nada</h1>
-            )}
-          </Card>
           <Stack spacing={3} sx={{ margin: 5 }}>
             <Pagination
               page={page}
