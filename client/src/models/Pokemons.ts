@@ -1,5 +1,5 @@
 export interface Pokemons {
-  id: number;
+  id: string;
   idPoke: number;
   name: string;
   life: number;
@@ -9,7 +9,7 @@ export interface Pokemons {
   Defense: number;
   Speed: number;
   img: string;
-  stats: Stats[];
+  stats?: Stats[];
   typesApi: string[];
   types: any;
 }
