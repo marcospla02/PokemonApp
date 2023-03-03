@@ -29,6 +29,9 @@ const MenuTable = ({
       <MenuItem onClick={handleMenuClose}>
         <a href="/favorites">Favorites</a>
       </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <a href="/about">About</a>
+      </MenuItem>
     </Menu>
   );
 };

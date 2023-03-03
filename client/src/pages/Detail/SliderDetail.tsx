@@ -18,9 +18,10 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme, color }) => ({
   },
 }));
 
+const MIN = 0;
+const MAX = 260;
+
 export function ProgressBarsAttack(props: any) {
-  const MIN = 0;
-  const MAX = 200;
   const value = props.attack;
   const normalise = ((value - MIN) * 100) / (MAX - MIN);
   return (
@@ -34,8 +35,6 @@ export function ProgressBarsAttack(props: any) {
 
 export function ProgressBarsDefense(props: any) {
   const value = props.defense;
-  const MIN = 0;
-  const MAX = 200;
   const normalise = ((value - MIN) * 100) / (MAX - MIN);
   return (
     <BorderLinearProgress
@@ -46,8 +45,6 @@ export function ProgressBarsDefense(props: any) {
   );
 }
 export function ProgressBarsSpeed(props: any) {
-  const MIN = 0;
-  const MAX = 200;
   const value = props.speed;
   const normalise = ((value - MIN) * 100) / (MAX - MIN);
   return (
@@ -60,8 +57,6 @@ export function ProgressBarsSpeed(props: any) {
 }
 export function ProgressBarsHeigth(props: any) {
   const value = props.heigth;
-  const MIN = 0;
-  const MAX = 200;
   const normalise = ((value - MIN) * 100) / (MAX - MIN);
   return (
     <BorderLinearProgress
@@ -71,10 +66,9 @@ export function ProgressBarsHeigth(props: any) {
     />
   );
 }
+
 export function ProgressBarsLife(props: any) {
   const value = props.life;
-  const MIN = 0;
-  const MAX = 200;
   const normalise = ((value - MIN) * 100) / (MAX - MIN);
   return (
     <BorderLinearProgress
