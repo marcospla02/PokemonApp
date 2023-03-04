@@ -10,4 +10,8 @@ export const ContainerError = styled.div`
     border-radius: 28px;
     box-shadow: 6px 2px 8px rgba(0, 0, 0, 0.74);
   }
+
+  img:hover {
+    margin-right: 10px;
+  }
 `;

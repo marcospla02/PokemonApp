@@ -17,7 +17,7 @@ export const favoritesSlice = createSlice({
   reducers: {
     addFavorites: (state, action: PayloadAction<Pokemons>) => {
       setLocalStorage(Actions.FAVORITES, state);
-      return action.payload;
+      return [...state, action.payload];
     },
   },
 });

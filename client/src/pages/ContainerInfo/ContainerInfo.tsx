@@ -6,6 +6,7 @@ import pokemonConfundido from "../../../public/pokemon-confundido.gif";
 
 const ContainerInfo = ({ tenPokemons }: any) => {
   const search = useAppSelector((state) => state.byName);
+  // const allStates = useAppSelector((state: any) => state[info]);
   const error: string = useAppSelector((state) => state.error);
   // tengo que hacerlo dinamico
   tenPokemons = search.length ? search : tenPokemons;

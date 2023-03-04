@@ -12,6 +12,7 @@ import pokebola from "../../../public/pokebola.gif";
 import ContainerInfo from "../ContainerInfo/ContainerInfo";
 
 const Home = () => {
+  window.scrollTo(0, 0);
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(true);
   const pokemons = useAppSelector<any>((state) => state.pokemons[0]);

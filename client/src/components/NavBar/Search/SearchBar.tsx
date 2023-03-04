@@ -19,6 +19,7 @@ interface EventTarget {
 }
 
 const SearchBar = () => {
+  window.scrollTo(0, 0);
   const [disabled, setDisable] = useState<boolean>(false);
   const [searchPokemon, setSearchPokemon] = useState({
     name: "",
@@ -26,7 +27,12 @@ const SearchBar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname.includes("/detail")) {
+    if (
+      location.pathname.includes("/detail") ||
+      location.pathname.includes("/profile") ||
+      location.pathname.includes("/favorites") ||
+      location.pathname.includes("/about")
+    ) {
       setDisable(true);
     }
   }, []);

@@ -1,22 +1,16 @@
 import { Pokemons } from "@/models";
-import {
-  addFavorites,
-  pokemonsDetail,
-  useAppDispatch,
-  useAppSelector,
-} from "@/redux";
+import { addFavorites, useAppDispatch, useAppSelector } from "@/redux";
 import { Favorite } from "@mui/icons-material";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { IconButton } from "@mui/material";
 import { Container } from "../Styles/CardStyle";
 
 const CardPokemon = (props: Pokemons) => {
-  const favorites = useAppSelector((state) => state.favorites);
+  const favorites: any = useAppSelector((state) => state.favorites);
+  const dispatch = useAppDispatch();
 
-  const handleAdd = (e: any) => {
-    console.log("soy event:", e);
-
-    // dispatch(addFavorites())
+  const handleAdd = () => {
+    dispatch(addFavorites(props));
   };
 
   let name: string =
@@ -26,7 +20,16 @@ const CardPokemon = (props: Pokemons) => {
 
   return (
     <Container>
-      <IconButton aria-label="add to favorites" onClick={handleAdd}>
+      <IconButton
+        aria-label="add to favorites"
+        onClick={() => handleAdd()}
+        className={
+          favorites.length !== null &&
+          favorites.find((fav: Pokemons) => fav.id === props.id)
+            ? "icon-button-red"
+            : "icon-button"
+        }
+      >
         <Favorite />
       </IconButton>
       <a href={`/detail/${props.id}`}>
@@ -49,3 +52,6 @@ const CardPokemon = (props: Pokemons) => {
 };
 
 export default CardPokemon;
+function dispatch(arg0: { payload: Pokemons; type: "favorites/addFavorites" }) {
+  throw new Error("Function not implemented.");
+}

@@ -12,19 +12,19 @@ export const ContainerDetail = styled.div`
 
   .info {
     position: absolute;
-    top: 20px;
+    top: 4%;
     right: 20%;
   }
 
   .info-all {
     position: absolute;
-    top: 80px;
+    top: 60%;
   }
 
   .a-detail {
     position: absolute;
-    left: 25px;
-    top: 25px;
+    left: 2%;
+    top: 4.3%;
   }
 `;
 

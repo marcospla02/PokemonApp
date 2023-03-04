@@ -31,4 +31,12 @@ export const Container = styled.div`
   .card {
     image-rendering: crisp-edges;
   }
+
+  .icon-button-red {
+    color: red;
+  }
+
+  .icon-button {
+    color: gray;
+  }
 `;
