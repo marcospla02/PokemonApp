@@ -21,3 +21,18 @@ export interface Type {
 export interface Stats {
   base_stat: number;
 }
+
+export const EmptyStates: Pokemons = {
+  id: "",
+  idPoke: 0,
+  name: "",
+  life: 0,
+  height: "",
+  weight: "",
+  Attack: 0,
+  Defense: 0,
+  Speed: 0,
+  img: "",
+  typesApi: [],
+  types: [],
+};

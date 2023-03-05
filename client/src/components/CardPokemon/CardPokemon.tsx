@@ -1,5 +1,10 @@
 import { Pokemons } from "@/models";
-import { addFavorites, useAppDispatch, useAppSelector } from "@/redux";
+import {
+  addFavorites,
+  removeFavorites,
+  useAppDispatch,
+  useAppSelector,
+} from "@/redux";
 import { Favorite } from "@mui/icons-material";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { IconButton } from "@mui/material";
@@ -9,7 +14,13 @@ const CardPokemon = (props: Pokemons) => {
   const favorites: any = useAppSelector((state) => state.favorites);
   const dispatch = useAppDispatch();
 
-  const handleAdd = () => {
+  const handleAddOrDelete = () => {
+    // es buscar si ya esta en favoritos y si esta borrarlo sino agragarlo. (2:34:03)
+    const filteredState =
+      favorites.length &&
+      favorites.find((fav: Pokemons) => fav.id === props.id);
+    console.log("soy filtered state", filteredState);
+    if (filteredState) return dispatch(removeFavorites(filteredState.id));
     dispatch(addFavorites(props));
   };
 
@@ -22,7 +33,7 @@ const CardPokemon = (props: Pokemons) => {
     <Container>
       <IconButton
         aria-label="add to favorites"
-        onClick={() => handleAdd()}
+        onClick={() => handleAddOrDelete()}
         className={
           favorites.length !== null &&
           favorites.find((fav: Pokemons) => fav.id === props.id)

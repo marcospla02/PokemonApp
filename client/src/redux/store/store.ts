@@ -1,10 +1,12 @@
 import { Pokemons } from "@/models/Pokemons";
 import { configureStore } from "@reduxjs/toolkit";
-import { detailSlice } from "../states/detail";
-import { errorSlice } from "../states/error";
-import { favoritesSlice } from "../states/favorites";
-import { pokemonsSlice } from "../states/pokemons";
-import { byNameSlice } from "../states/pokemonsByName";
+import {
+  favoritesSlice,
+  pokemonsSlice,
+  byNameSlice,
+  detailSlice,
+  errorSlice,
+} from "../states";
 
 export interface AppStore {
   pokemons: Pokemons[];

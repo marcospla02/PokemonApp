@@ -4,7 +4,7 @@ import {
   getLocalStorage,
   setLocalStorage,
 } from "@/utility/localStorage.utility";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: Pokemons[] = [];
 
@@ -16,10 +16,20 @@ export const favoritesSlice = createSlice({
     : initialState,
   reducers: {
     addFavorites: (state, action: PayloadAction<Pokemons>) => {
-      setLocalStorage(Actions.FAVORITES, state);
-      return [...state, action.payload];
+      const fav = [...state, action.payload];
+      setLocalStorage(Actions.FAVORITES, fav);
+      return fav;
+    },
+    removeFavorites: (state, action) => {
+      // current(state); si no ponia el current state me traia el state con un proxy y no podia manejarlo. (buscar el stack overflow (si no me acuerdo porque era esto))
+      console.log("soy action.payload:", action.payload);
+      const filteredState = current(state).filter(
+        (fav: Pokemons) => fav.id !== action.payload
+      );
+      setLocalStorage(Actions.FAVORITES, filteredState);
+      return filteredState;
     },
   },
 });
 
-export const { addFavorites } = favoritesSlice.actions;
+export const { addFavorites, removeFavorites } = favoritesSlice.actions;

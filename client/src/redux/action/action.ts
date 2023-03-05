@@ -1,9 +1,6 @@
 import axios from "axios";
 import { Dispatch } from "@reduxjs/toolkit";
-import { getPokemons } from "../states/pokemons";
-import { getByName } from "../states/pokemonsByName";
-import { getDetail } from "../states/detail";
-import { messageError } from "../states/error";
+import { getPokemons, getByName, messageError, getDetail } from "../states";
 
 export const getAllPokemons = () => (dispatch: Dispatch) => {
   axios

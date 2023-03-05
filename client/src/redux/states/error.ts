@@ -7,10 +7,12 @@ export const errorSlice = createSlice({
   initialState,
   reducers: {
     messageError: (state, action: PayloadAction) => {
-      console.log("soy action payload error:", action.payload);
       return action.payload;
+    },
+    deleteMessageError: (state, action: PayloadAction) => {
+      return "";
     },
   },
 });
 
-export const { messageError } = errorSlice.actions;
+export const { messageError, deleteMessageError } = errorSlice.actions;

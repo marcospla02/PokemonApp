@@ -1,15 +1,20 @@
 import { Card, CardPokemon } from "@/components";
 import { ContainerError } from "@/components/Styles/ContainerInfoCss";
 import { Pokemons } from "@/models";
-import { useAppSelector } from "@/redux";
+import { deleteMessageError, useAppDispatch, useAppSelector } from "@/redux";
+import { useEffect } from "react";
 import pokemonConfundido from "../../../public/pokemon-confundido.gif";
 
 const ContainerInfo = ({ tenPokemons }: any) => {
   const search = useAppSelector((state) => state.byName);
-  // const allStates = useAppSelector((state: any) => state[info]);
   const error: string = useAppSelector((state) => state.error);
+  const dispatch = useAppDispatch();
   // tengo que hacerlo dinamico
   tenPokemons = search.length ? search : tenPokemons;
+
+  useEffect(() => {
+    if (search.length) dispatch(deleteMessageError());
+  }, [search]);
 
   return (
     <div>
