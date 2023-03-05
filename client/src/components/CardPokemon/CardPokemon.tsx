@@ -15,7 +15,6 @@ const CardPokemon = (props: Pokemons) => {
   const dispatch = useAppDispatch();
 
   const handleAddOrDelete = () => {
-    // es buscar si ya esta en favoritos y si esta borrarlo sino agragarlo. (2:34:03)
     const filteredState =
       favorites.length &&
       favorites.find((fav: Pokemons) => fav.id === props.id);
