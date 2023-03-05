@@ -32,7 +32,7 @@ const ContainerInfo = ({ tenPokemons }: any) => {
               </a>
             </div>
           </ContainerError>
-        ) : tenPokemons?.length ? (
+        ) : tenPokemons.length ? (
           tenPokemons?.map((poke: Pokemons) => {
             return (
               <div key={poke.id}>

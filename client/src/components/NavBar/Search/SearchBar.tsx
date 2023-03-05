@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Button, SearchCss } from "./CssSearch";
-import SearchIcon from "@mui/icons-material/Search";
 import { getPokemonByName, useAppDispatch } from "@/redux";
+import { KeyDown } from "@/utility/keyDwn";
+import SearchIcon from "@mui/icons-material/Search";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { Button, SearchCss } from "./CssSearch";
 
 interface EventTarget {
   addEventListener(
@@ -47,12 +48,23 @@ const SearchBar = () => {
     setSearchPokemon({ ...searchPokemon, name: target.value });
   };
 
+  const handleKeyDown = (event: KeyDown) => {
+    if (searchPokemon.name === "") {
+      return setError({ ...error, message: "the name is recuired" });
+    }
+    if (searchPokemon.name) setError({ message: "" });
+
+    if (event.key === "Enter" && !error.message)
+      return dispatch(getPokemonByName(searchPokemon.name));
+  };
+
   const handleSumbit = () => {
     if (searchPokemon.name === "") {
-      setError({ ...error, message: "the name is recuired" });
+      console.log("soy errro", error);
+      return setError({ ...error, message: "the name is recuired" });
     }
+    if (searchPokemon.name) setError({ message: "" });
     if (!error.message) {
-      //hago el dispatch
       dispatch(getPokemonByName(searchPokemon.name));
     }
   };
@@ -63,6 +75,8 @@ const SearchBar = () => {
         placeholder="Search pokemon..."
         onChange={handleSearch}
         disabled={disabled}
+        type="search"
+        onKeyDown={handleKeyDown}
       ></SearchCss>
 
       <Button type="submit" onClick={handleSumbit} disabled={disabled}>
