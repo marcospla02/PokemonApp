@@ -18,7 +18,6 @@ const CardPokemon = (props: Pokemons) => {
     const filteredState =
       favorites.length &&
       favorites.find((fav: Pokemons) => fav.id === props.id);
-    console.log("soy filtered state", filteredState);
     if (filteredState) return dispatch(removeFavorites(filteredState.id));
     dispatch(addFavorites(props));
   };
