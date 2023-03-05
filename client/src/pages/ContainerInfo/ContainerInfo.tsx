@@ -9,7 +9,6 @@ const ContainerInfo = ({ tenPokemons }: any) => {
   const search = useAppSelector((state) => state.byName);
   const error: string = useAppSelector((state) => state.error);
   const dispatch = useAppDispatch();
-  // tengo que hacerlo dinamico
   tenPokemons = search.length ? search : tenPokemons;
 
   useEffect(() => {
