@@ -1,5 +1,5 @@
 import { Router } from "express";
-import deletePokemon from "../controllers/deletePokemon";
+import { deletePokemon } from "../controllers";
 
 const router = Router();
 

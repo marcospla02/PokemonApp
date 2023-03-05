@@ -1,5 +1,5 @@
 import { Router } from "express";
-import getTypes from "../controllers/getTypes";
+import { getTypes } from "../controllers";
 const router = Router();
 
 router.get("/", async (req, res) => {

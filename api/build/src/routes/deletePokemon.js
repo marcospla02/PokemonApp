@@ -8,19 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const deletePokemon_1 = __importDefault(require("../controllers/deletePokemon"));
+const controllers_1 = require("../controllers");
 const router = (0, express_1.Router)();
 router.delete("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
         if (!id)
             throw new Error("id is required");
-        yield (0, deletePokemon_1.default)(id);
+        yield (0, controllers_1.deletePokemon)(id);
         res.send({ msg: "Pokemon deleted successfully" });
     }
     catch (error) {

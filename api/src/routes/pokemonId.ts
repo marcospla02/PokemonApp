@@ -1,6 +1,5 @@
 import { Router } from "express";
 import getPokemonsIdInDb from "../controllers/getPokemonIdInDb";
-// import getPokemonsIdOrName from "../controllers/getPokemonsIdOrName";
 
 const router = Router();
 

@@ -8,17 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const newPokemon_1 = __importDefault(require("../controllers/newPokemon"));
+const controllers_1 = require("../controllers");
 const router = (0, express_1.Router)();
 router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const body = req.body;
-        const created = yield (0, newPokemon_1.default)(body);
+        const created = yield (0, controllers_1.newPokemon)(body);
         res.send(created);
     }
     catch (error) {

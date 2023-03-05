@@ -8,18 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const findNameInDb_1 = __importDefault(require("../controllers/findNameInDb"));
-const getAllPokemons_1 = __importDefault(require("../controllers/getAllPokemons"));
+const controllers_1 = require("../controllers");
 // import getPokemonsIdOrName from "../controllers/controllersApi/getPokemonsIdOrName";
 const router = (0, express_1.Router)();
 router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const info = yield (0, getAllPokemons_1.default)();
+        const info = yield (0, controllers_1.getAllPokemons)();
         // const info = await getPokemonsDb();
         res.send(info);
     }
@@ -30,7 +26,7 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 router.get("/:name", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name } = req.params;
-        const infoDb = yield (0, findNameInDb_1.default)(name.toLocaleLowerCase());
+        const infoDb = yield (0, controllers_1.findNameInDb)(name.toLocaleLowerCase());
         if (!infoDb)
             return res.status(404).send(`couldn't find "${name}"`);
         res.send(infoDb);
