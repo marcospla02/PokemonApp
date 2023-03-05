@@ -11,7 +11,7 @@ export const Card = styled.div`
 
 export const Container = styled.div`
   background-color: var(--aliceblue);
-  /* background-color: var(--yellow); */
+  margin-left: 10px;
   border-radius: 25px;
   height: 300px;
   width: 200px;

@@ -1,4 +1,6 @@
+import { useAppSelector } from "@/redux";
 import { Menu, MenuItem } from "@mui/material";
+import { Fav } from "../Styles/NavBar";
 import { Props } from "./NavBarMobile";
 
 const MenuTable = ({
@@ -7,6 +9,7 @@ const MenuTable = ({
   handleMenuClose,
   anchorEl,
 }: Props) => {
+  const favorite = useAppSelector((state) => state.favorites);
   return (
     <Menu
       anchorEl={anchorEl}
@@ -28,6 +31,7 @@ const MenuTable = ({
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <a href="/favorites">Favorites</a>
+        <Fav>{favorite.length}</Fav>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <a href="/about">About</a>
