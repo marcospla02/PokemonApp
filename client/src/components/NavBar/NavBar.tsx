@@ -31,6 +31,10 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(null);
   };
 
+  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
+
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
@@ -70,18 +74,29 @@ export default function PrimarySearchAppBar() {
               </IconButton>
             )}
           </Box>
-          {/* <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box> */}
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            {isAuthenticated ? (
+              <ImgPicture
+                src={user?.picture}
+                alt={user?.name}
+                height="40px"
+                width="40px"
+                onClick={handleProfileMenuOpen}
+              />
+            ) : (
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            )}
+          </Box>
         </Toolbar>
       </AppBar>
 
