@@ -30,6 +30,7 @@ export const Button = styled.button`
   padding: 2px 5px;
   cursor: pointer;
   transition: 1s;
+  color: black;
 
   :hover {
     background-color: #c0d4eb;

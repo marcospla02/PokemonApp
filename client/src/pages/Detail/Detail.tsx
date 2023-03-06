@@ -21,7 +21,7 @@ const Detail = () => {
     dispatch(pokemonsDetail(id));
   }, []);
 
-  let types = !detail.types.length ? detail.typesApi : detail.types;
+  let types = !detail?.types.length ? detail.typesApi : detail.types;
   let name = detail.name.charAt(0).toUpperCase() + detail.name.slice(1);
 
   return (

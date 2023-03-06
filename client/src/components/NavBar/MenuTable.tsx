@@ -1,4 +1,6 @@
+import { LoginButton, LogoutButton } from "@/pages/Profile";
 import { useAppSelector } from "@/redux";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Menu, MenuItem } from "@mui/material";
 import { Fav } from "../Styles/NavBar";
 import { Props } from "./NavBarMobile";
@@ -10,6 +12,8 @@ const MenuTable = ({
   anchorEl,
 }: Props) => {
   const favorite = useAppSelector((state) => state.favorites);
+  const { isAuthenticated } = useAuth0();
+
   return (
     <Menu
       anchorEl={anchorEl}
@@ -27,7 +31,7 @@ const MenuTable = ({
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <a href="/profile">Profile</a>
+        <a href="/">{isAuthenticated ? <LogoutButton /> : <LoginButton />}</a>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <a href="/favorites">Favorites</a>

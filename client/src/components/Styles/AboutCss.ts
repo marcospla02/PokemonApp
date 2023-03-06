@@ -7,6 +7,7 @@ export const ContainerAbout = styled.div`
   left: 25%;
   font-size: large;
   font-weight: bold;
+  color: black;
 `;
 
 export const Icons = styled.p`

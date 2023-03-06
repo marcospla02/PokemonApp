@@ -14,3 +14,12 @@ export const Fav = styled.p`
   font-weight: 800;
   top: -35%;
 `;
+
+export const ImgPicture = styled.img`
+  border: 1px;
+  border-radius: 30px;
+  cursor: pointer;
+  :hover {
+    margin-top: -5px;
+  }
+`;
