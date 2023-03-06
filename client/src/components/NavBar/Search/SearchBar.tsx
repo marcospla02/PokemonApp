@@ -1,31 +1,20 @@
-import { getPokemonByName, useAppDispatch } from "@/redux";
+import { getPokemonByName, useAppDispatch, useAppSelector } from "@/redux";
 import { KeyDown } from "@/utility/keyDwn";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Button, SearchCss } from "./CssSearch";
 
-interface EventTarget {
-  addEventListener(
-    type: string,
-    listener: EventListenerOrEventListenerObject,
-    useCapture?: boolean
-  ): void;
-  dispatchEvent(evt: Event): boolean;
-  removeEventListener(
-    type: string,
-    listener: EventListenerOrEventListenerObject,
-    useCapture?: boolean
-  ): void;
-}
-
 const SearchBar = () => {
   window.scrollTo(0, 0);
   const [disabled, setDisable] = useState<boolean>(false);
-  const [searchPokemon, setSearchPokemon] = useState({
-    name: "",
-  });
+  const [error, setError] = useState({ message: "" });
+  const [searchPokemon, setSearchPokemon] = useState({ name: "" });
+
+  const stateName = useAppSelector((state) => state.byName);
+
   const location = useLocation();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (
@@ -38,9 +27,9 @@ const SearchBar = () => {
     }
   }, []);
 
-  const [error, setError] = useState({ message: "" });
-
-  const dispatch = useAppDispatch();
+  useEffect(() => {
+    setSearchPokemon({ name: "" });
+  }, [stateName]);
 
   const handleSearch = (event: React.SyntheticEvent) => {
     let target = event.target as HTMLInputElement;
@@ -54,8 +43,9 @@ const SearchBar = () => {
     }
     if (searchPokemon.name) setError({ message: "" });
 
-    if (event.key === "Enter" && !error.message)
-      return dispatch(getPokemonByName(searchPokemon.name));
+    if (event.key === "Enter" && !error.message) {
+      dispatch(getPokemonByName(searchPokemon.name));
+    }
   };
 
   const handleSumbit = () => {
@@ -73,9 +63,9 @@ const SearchBar = () => {
     <>
       <SearchCss
         placeholder="Search pokemon..."
+        value={searchPokemon.name}
         onChange={handleSearch}
         disabled={disabled}
-        type="search"
         onKeyDown={handleKeyDown}
       ></SearchCss>
 

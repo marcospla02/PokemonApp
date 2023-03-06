@@ -9,13 +9,14 @@ import { Stack } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import { useEffect, useState } from "react";
 import pokebola from "../../../public/pokebola.gif";
-import ContainerInfo from "../ContainerInfo/ContainerInfo";
+import ContainerInfo from "./ContainerInfo/ContainerInfo";
 
 const Home = () => {
   window.scrollTo(0, 0);
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(true);
   const pokemons = useAppSelector<any>((state) => state.pokemons[0]);
+  const search = useAppSelector((state) => state.byName);
   const dispatch = useAppDispatch();
   const indexOfLastPokemon = page * 10;
   const indexOfFirstPokemon = indexOfLastPokemon - 10;
@@ -27,13 +28,13 @@ const Home = () => {
   useEffect(() => {
     setTimeout(() => setLoading(true));
     dispatch(getAllPokemons());
-    if (pokemons?.length) setTimeout(() => setLoading(false), 2000);
+    if (pokemons?.length) setTimeout(() => setLoading(false), 1500);
   }, []);
 
   useEffect(() => {
     setTimeout(() => setLoading(true));
     getPokemons(pokemons);
-    if (pokemons?.length) setTimeout(() => setLoading(false), 2000);
+    if (pokemons?.length) setTimeout(() => setLoading(false), 1500);
   }, [pokemons]);
 
   const handlePagination = (
@@ -49,6 +50,8 @@ const Home = () => {
         <ContainerImg>
           <img src={pokebola} alt="loading.." />
         </ContainerImg>
+      ) : search.length ? (
+        <ContainerInfo />
       ) : (
         <div>
           <Stack spacing={3} sx={{ margin: 5 }}>
