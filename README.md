@@ -1,6 +1,6 @@
 # PokemonApp
 
-<img height="300" width='100%' src="./client/src/portada.png" />
+<img height="500" width='100%' src="./client/src/portada.png" />
 
 ## Objetivos del Proyecto
 
