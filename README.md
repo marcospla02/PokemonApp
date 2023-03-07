@@ -21,7 +21,6 @@ La idea general es crear una aplicación en la cual se puedan ver los distintos 
 
 - GET <https://pokeapi.co/api/v2/pokemon>
 - GET <https://pokeapi.co/api/v2/pokemon/{id}>
-- GET <https://pokeapi.co/api/v2/pokemon/{name}>
 - GET <https://pokeapi.co/api/v2/type>
 
 ## Frontend
