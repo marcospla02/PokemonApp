@@ -39,9 +39,7 @@ export async function getPokemons() {
     // const allInfo = await pokeInfo.concat(infoDb);
 
     while (num < 1) {
-      console.log(num);
       num++;
-      console.log("despues del incremnto", num);
       return Pokemon.bulkCreate(pokeInfo);
     }
 

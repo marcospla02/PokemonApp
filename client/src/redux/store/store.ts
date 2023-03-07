@@ -1,3 +1,4 @@
+import { User } from "@/models";
 import { Pokemons } from "@/models/Pokemons";
 import { configureStore } from "@reduxjs/toolkit";
 import {
@@ -6,6 +7,8 @@ import {
   byNameSlice,
   detailSlice,
   errorSlice,
+  allUsersSlice,
+  userSlice,
 } from "../states";
 
 export interface AppStore {
@@ -14,6 +17,8 @@ export interface AppStore {
   byName: Pokemons[];
   detail: Pokemons;
   error: string;
+  user: User;
+  users: User[];
 }
 
 export const store = configureStore<AppStore>({
@@ -23,6 +28,8 @@ export const store = configureStore<AppStore>({
     byName: byNameSlice.reducer,
     detail: detailSlice.reducer,
     error: errorSlice.reducer,
+    users: allUsersSlice.reducer,
+    user: userSlice.reducer,
   },
 });
 

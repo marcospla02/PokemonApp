@@ -1,4 +1,4 @@
-import { About, Detail, Favorites, Home, Profile } from "@/pages";
+import { About, Detail, Favorites, Home } from "@/pages";
 import { Route, Routes } from "react-router-dom";
 
 const Switch = () => {

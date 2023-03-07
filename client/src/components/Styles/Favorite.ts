@@ -15,6 +15,7 @@ export const ContainerImgFav = styled.div`
   .h1 {
     display: flex;
     justify-items: center;
+    color: black;
   }
 
   img {

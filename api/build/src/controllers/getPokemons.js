@@ -48,9 +48,7 @@ function getPokemons() {
             // const infoDb = await getPokemonsDb();
             // const allInfo = await pokeInfo.concat(infoDb);
             while (num < 1) {
-                console.log(num);
                 num++;
-                console.log("despues del incremnto", num);
                 return db_1.Pokemon.bulkCreate(pokeInfo);
             }
             return db_1.Pokemon.findOrCreate({

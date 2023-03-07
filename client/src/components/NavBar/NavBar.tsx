@@ -1,6 +1,6 @@
 import { useAuth0, User } from "@auth0/auth0-react";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import MoreIcon from "@mui/icons-material/MoreVert";
+import MoodIcon from "@mui/icons-material/Mood";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";

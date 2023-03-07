@@ -40,3 +40,10 @@ export interface Body {
   img: string;
   types: string[];
 }
+
+export interface UserInt {
+  id: string;
+  name: string;
+  email: string;
+  favorites: SchemaPokemon[];
+}

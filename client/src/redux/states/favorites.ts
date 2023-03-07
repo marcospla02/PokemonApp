@@ -22,14 +22,18 @@ export const favoritesSlice = createSlice({
     },
     removeFavorites: (state, action) => {
       // current(state); si no ponia el current state me traia el state con un proxy y no podia manejarlo. (buscar el stack overflow (si no me acuerdo porque era esto))
-      console.log("soy action.payload:", action.payload);
       const filteredState = current(state).filter(
         (fav: Pokemons) => fav.id !== action.payload
       );
       setLocalStorage(Actions.FAVORITES, filteredState);
       return filteredState;
     },
+    addFavoritesArray: (state, action: PayloadAction<Pokemons[]>) => {
+      setLocalStorage(Actions.FAVORITES, [...action.payload]);
+      return [...action.payload];
+    },
   },
 });
 
-export const { addFavorites, removeFavorites } = favoritesSlice.actions;
+export const { addFavorites, removeFavorites, addFavoritesArray } =
+  favoritesSlice.actions;

@@ -1,7 +1,10 @@
+import { Pokemons } from "@/models";
 import { LoginButton, LogoutButton } from "@/pages/Profile";
-import { useAppSelector } from "@/redux";
+import { createUserAction, useAppDispatch, useAppSelector } from "@/redux";
+import { getLocalStorage } from "@/utility";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Menu, MenuItem } from "@mui/material";
+import { useEffect } from "react";
 import { Fav } from "../Styles/NavBar";
 import { Props } from "./NavBarMobile";
 

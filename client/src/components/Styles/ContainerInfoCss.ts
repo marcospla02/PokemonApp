@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ContainerError = styled.div`
+  color: black;
   .image {
     display: flex;
     justify-content: center;

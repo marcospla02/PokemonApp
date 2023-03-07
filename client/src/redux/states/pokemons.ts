@@ -8,16 +8,14 @@ export const pokemonsSlice = createSlice({
   name: "pokemons",
   initialState,
   reducers: {
-    getPokemons: (state, action: PayloadAction<Pokemons>) => {
+    getPokemons: (state, action: PayloadAction<Pokemons[]>) => {
       if (
         state.length === 0 ||
-        state.filter((poke) => poke.id === action.payload.id).length === 0
+        state.filter((poke) => action.payload.find((a) => poke.id === a.id))
+          .length === 0
       )
-        return [...state, action.payload];
+        return [...state, ...action.payload];
     },
-    // getByName: (state, action: PayloadAction<Pokemons>) => {
-    //   return [action.payload];
-    // },
   },
 });
 

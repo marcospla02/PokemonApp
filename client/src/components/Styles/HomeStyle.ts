@@ -12,4 +12,7 @@ export const ContainerImg = styled.div`
 
 export const ContainerHome = styled.div`
   /* background: linear-gradient(#ffed00, #ff5b00, #ffed00); */
+  .container-all {
+    margin-top: 6rem;
+  }
 `;
