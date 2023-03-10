@@ -2,6 +2,11 @@
 
 <img height="400" width='100%' src="./client/src/portada.png" />
 
+Proyecto realizado para practicar tecnologías nuevas y seguir creciendo! Las tecnologias que use fueron: Typescript, React con Vite, Redux Toolkit, Material UI, Styled-Components, PostgreSql, Express y Nodejs.
+En la pagina podes agregar a favoritos (Estando o no logueado) y loguearte, si tenias favoritos en la cuenta se van a cargar junto con los nuevos que agregaste. 
+Podes buscar el Pokemon por nombre y proximamente va haber filtrados. 
+(La pagina no esta deployada porque en railway no me anda y en render tengo que esperar hasta el mes 4 de 2023 para poder subirlo. Te pido perdon!! yo tambien queria que este en internet)
+
 ## Objetivos del Proyecto
 
 - Construir una App utlizando Typescript, React, Vite, Redux Toolkit, Material UI, Express, Node y Sequelize.
