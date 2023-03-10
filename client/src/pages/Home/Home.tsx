@@ -71,16 +71,19 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getAllUsers());
-    setTimeout(() => setLoading(true));
-    dispatch(getAllPokemons());
+    setLoading(true);
+    if (!pokemons.length) dispatch(getAllPokemons());
     if (pokemons?.length) setTimeout(() => setLoading(false), 1500);
+    else setTimeout(() => setLoading(false), 2500);
   }, []);
 
   useEffect(() => {
     dispatch(getAllUsers());
-    setTimeout(() => setLoading(true));
-    getPokemons(pokemons);
+    setLoading(true);
+    if (!pokemons.length) getPokemons(pokemons);
+
     if (pokemons?.length) setTimeout(() => setLoading(false), 1500);
+    else setTimeout(() => setLoading(false), 2500);
   }, [pokemons]);
 
   const handlePagination = (

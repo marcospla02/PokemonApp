@@ -29,8 +29,10 @@ export const favoritesSlice = createSlice({
       return filteredState;
     },
     addFavoritesArray: (state, action: PayloadAction<Pokemons[]>) => {
-      setLocalStorage(Actions.FAVORITES, [...action.payload]);
-      return [...action.payload];
+      console.log("soy action", action.payload);
+      const allFav: any = getLocalStorage(Actions.FAVORITES);
+      const favoriteParse = JSON.parse(allFav);
+      return [...favoriteParse, ...action.payload];
     },
   },
 });

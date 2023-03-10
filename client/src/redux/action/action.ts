@@ -6,6 +6,7 @@ import { getUser } from "../states/allUsers";
 import { getUserId } from "../states/user";
 
 const baseUrl = "http://localhost:3001/";
+// const baseUrl = "https://serverpokemon-qlwv.onrender.com/";
 
 export const getAllPokemons = () => (dispatch: Dispatch) => {
   axios

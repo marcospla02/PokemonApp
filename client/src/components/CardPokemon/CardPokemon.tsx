@@ -20,8 +20,9 @@ const CardPokemon = (props: Pokemons) => {
     const filteredState =
       favorites.length &&
       favorites.find((fav: Pokemons) => fav.id === props.id);
-
+    // no se suma los de db y local
     if (filteredState) {
+      console.log("entro la concha de la lora");
       dispatch(removeFavorites(filteredState.id));
 
       const filteredDb =
@@ -32,9 +33,11 @@ const CardPokemon = (props: Pokemons) => {
 
       return;
     }
+
     dispatch(addFavorites(props));
 
     if (user.id) {
+      console.log("estoy en el que agrego de a uno");
       dispatch(updateUser(user.id, { favorites: [...user.favorites, props] }));
     }
   };

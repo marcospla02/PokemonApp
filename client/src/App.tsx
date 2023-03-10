@@ -7,6 +7,7 @@ import Switch from "./components/Switch/Switch";
 import {
   addFavorites,
   addFavoritesArray,
+  getAllPokemons,
   getAllUsers,
   getUserAction,
   useAppDispatch,
@@ -33,9 +34,10 @@ function App() {
         if (userFind) {
           dispatch(getUserAction(userFind.email));
 
-          !favorites.length &&
-            userFind.favorites !== null &&
+          if (userFind.favorites !== null) {
+            console.log("estoy por despachar el add arrat de favorites");
             dispatch(addFavoritesArray(userFind.favorites));
+          }
         }
       }
     }
@@ -43,7 +45,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllUsers());
-
+    dispatch(getAllPokemons());
     if (isAuthenticated) {
       const userFind = allUsers.find((u) => u.id === user?.email);
 
@@ -52,14 +54,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      // userDb.favorites.forEach((favdb) => {
-      //   if (!favorites.includes(favdb)) {
-      //     return dispatch(addFavorites(favdb));
-      //   }
-      // });
-    }
-  }, [userDb]);
+    dispatch(getAllPokemons());
+  }, [dispatch]);
 
   return (
     <div className="App">
