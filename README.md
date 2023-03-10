@@ -1,6 +1,6 @@
 # PokemonApp
 
-<img height="150" src="./client/src/portada.png" />
+<img height="150" src="./client/src/img/portada.png" />
 
 ## Objetivos del Proyecto
 
@@ -96,3 +96,11 @@ Se debe desarrollar un servidor en Node/Express y Typescript con las siguientes 
 - [ ] **GET /types**:
   - Obtener todos los tipos de pokemons posibles
   - En una primera instancia deberán traerlos desde pokeapi y guardarlos en su propia base de datos y luego ya utilizarlos desde allí
+
+## Imagenes del proyecto
+
+<img src='./client/src/img/portada-dropdown.png' alt='portada-con-dropdown' />
+<img src='./client/src/img/detalle.png' alt='detalle' />
+<img src='./client/src/img/search.png' alt='search' />
+<img src='./client/src/img/favoritos.png' alt='favoritos' />
+<img src='./client/src/img/login.png' alt='logueo' />
