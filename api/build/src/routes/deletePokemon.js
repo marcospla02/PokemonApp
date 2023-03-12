@@ -24,4 +24,16 @@ router.delete("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* 
         res.send(error.message);
     }
 }));
+router.delete("/user/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        if (!id)
+            throw new Error("id is required");
+        yield (0, controllers_1.deleteUser)(id);
+        res.send({ msg: "User delete successfully" });
+    }
+    catch (error) {
+        res.send(error.message);
+    }
+}));
 exports.default = router;
