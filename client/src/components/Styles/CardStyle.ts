@@ -3,10 +3,13 @@ import styled from "styled-components";
 export const Card = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 5px 100px;
+  /* padding-left: 16rem; */
+  padding-left: 12.3rem;
+  /* padding-right: 7rem; */
+  padding-right: 8rem;
   flex-wrap: wrap;
-  position: relative;
-  justify-content: space-between;
+  /* position: relative; */
+  justify-content: end;
 `;
 
 export const Container = styled.div`

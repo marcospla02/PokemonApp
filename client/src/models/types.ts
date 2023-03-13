@@ -3,4 +3,5 @@ export enum Actions {
   FAVORITES = "favorites",
   GET_BY_NAME = "get_by_name",
   REMOVE_FAVORITES = "remove_favorites",
+  GET_TYPES = "get_types",
 }

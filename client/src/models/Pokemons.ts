@@ -36,3 +36,8 @@ export const EmptyStates: Pokemons = {
   typesApi: [],
   types: [],
 };
+
+export interface ActionTypes {
+  payload: string;
+  type: string;
+}

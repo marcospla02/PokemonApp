@@ -1,10 +1,22 @@
 import { CardFavorite, CardPokemon, ContainerImgFav } from "@/components";
 import { Pokemons } from "@/models";
-import { useAppSelector } from "@/redux";
-import sadPicachu from "../../../public/sad-pikachu.gif";
+import { getUserId, useAppDispatch, useAppSelector } from "@/redux";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
+import sadPicachu from "../../sad-pikachu.gif";
 
 const Favorites = () => {
   const Favorites = useAppSelector((state) => state.favorites);
+  const { isAuthenticated, user } = useAuth0();
+  const userdb = useAppSelector((state) => state.users);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (isAuthenticated)
+      dispatch(getUserId(userdb.find((u) => u.id === user?.email)));
+  }, [isAuthenticated]);
+
   return (
     <CardFavorite>
       {Favorites.length ? (

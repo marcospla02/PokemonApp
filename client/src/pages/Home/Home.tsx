@@ -1,10 +1,16 @@
-import { ContainerHome, ContainerImg } from "@/components/Styles/HomeStyle";
+import {
+  ButtonHome,
+  ContainerHome,
+  ContainerImg,
+} from "@/components/Styles/HomeStyle";
+import { Actions, Pokemons } from "@/models";
 import {
   createUserAction,
   getAllPokemons,
   getAllUsers,
   getPokemons,
   getUserAction,
+  resetFilters,
   useAppDispatch,
   useAppSelector,
 } from "@/redux";
@@ -20,6 +26,8 @@ const Home = () => {
   window.scrollTo(0, 0);
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(true);
+
+  const filter = useAppSelector((state) => state.filter);
   const pokemons = useAppSelector((state) => state.pokemons);
   const search = useAppSelector((state) => state.byName);
   const error = useAppSelector((state) => state.error);
@@ -31,9 +39,15 @@ const Home = () => {
   const indexOfLastPokemon = page * 10;
   const indexOfFirstPokemon = indexOfLastPokemon - 10;
 
-  const countPokemons = Math.ceil(pokemons?.length / 10);
+  const currentPokemons = !filter?.length ? pokemons.length : filter.length;
 
-  const tenPokemons = pokemons?.slice(indexOfFirstPokemon, indexOfLastPokemon);
+  const countPokemons = Math.ceil(currentPokemons / 10);
+
+  let tenPokemons: Pokemons[] = filter.slice(
+    indexOfFirstPokemon,
+    indexOfLastPokemon
+  );
+  // : pokemons.slice(indexOfFirstPokemon, indexOfLastPokemon);
 
   const favAlstg = getLocalStorage("favorites");
 
@@ -73,7 +87,8 @@ const Home = () => {
     dispatch(getAllUsers());
     setLoading(true);
     if (!pokemons.length) dispatch(getAllPokemons());
-    if (pokemons?.length) setTimeout(() => setLoading(false), 1500);
+    if (pokemons.length || filter?.length)
+      setTimeout(() => setLoading(false), 3000);
     else setTimeout(() => setLoading(false), 2500);
   }, []);
 
@@ -82,8 +97,11 @@ const Home = () => {
     setLoading(true);
     if (!pokemons.length) getPokemons(pokemons);
 
-    if (pokemons?.length) setTimeout(() => setLoading(false), 1500);
+    if (pokemons.length || filter?.length)
+      setTimeout(() => setLoading(false), 3000);
     else setTimeout(() => setLoading(false), 2500);
+
+    getLocalStorage(Actions.GET_POKEMONS) && dispatch(resetFilters());
   }, [pokemons]);
 
   const handlePagination = (
@@ -101,13 +119,13 @@ const Home = () => {
         </ContainerImg>
       ) : search.length || error !== "" ? (
         <ContainerInfo />
-      ) : (
+      ) : filter.length ? (
         <div className="container-all">
           <Stack spacing={3} sx={{ margin: 5 }}>
             <Pagination
               page={page}
               variant="outlined"
-              count={countPokemons}
+              count={countPokemons < 10 ? 1 : countPokemons}
               sx={{
                 width: "100%",
                 display: "flex",
@@ -133,6 +151,11 @@ const Home = () => {
               onChange={handlePagination}
             />
           </Stack>
+        </div>
+      ) : (
+        <div>
+          <h1>We do not have pokemos with this type</h1>
+          <ButtonHome onClick={() => dispatch(resetFilters())}>Home</ButtonHome>
         </div>
       )}
     </ContainerHome>

@@ -1,25 +1,27 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import "./App.css";
 import { NavBar } from "./components";
 import Switch from "./components/Switch/Switch";
+import { Actions } from "./models";
 import {
-  addFavorites,
   addFavoritesArray,
   getAllPokemons,
   getAllUsers,
+  getTypes,
   getUserAction,
+  resetFilters,
   useAppDispatch,
   useAppSelector,
 } from "./redux";
+import { getLocalStorage } from "./utility";
 
 function App() {
   const allUsers = useAppSelector((state) => state.users);
   const userDb = useAppSelector((state) => state.user);
-
   const pokemons = useAppSelector((state) => state.pokemons);
   const favorites = useAppSelector((state) => state.favorites);
+
   const dispatch = useAppDispatch();
 
   const { isAuthenticated, user } = useAuth0();
@@ -34,18 +36,20 @@ function App() {
         if (userFind) {
           dispatch(getUserAction(userFind.email));
 
-          if (userFind.favorites !== null) {
+          if (/* !favorites.length && */ userFind.favorites !== null) {
             console.log("estoy por despachar el add arrat de favorites");
             dispatch(addFavoritesArray(userFind.favorites));
           }
         }
       }
     }
-  }, [isAuthenticated, pokemons]);
+  }, [isAuthenticated]);
 
   useEffect(() => {
     dispatch(getAllUsers());
     dispatch(getAllPokemons());
+    dispatch(getTypes());
+    getLocalStorage(Actions.GET_POKEMONS) && dispatch(resetFilters());
     if (isAuthenticated) {
       const userFind = allUsers.find((u) => u.id === user?.email);
 

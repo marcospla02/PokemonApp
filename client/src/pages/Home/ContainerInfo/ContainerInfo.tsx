@@ -1,8 +1,8 @@
 import { ContainerError } from "@/components/Styles/ContainerInfoCss";
 import { deleteMessageError, useAppDispatch, useAppSelector } from "@/redux";
-import { RenderCardPokemons } from "@/utility";
 import { useEffect } from "react";
 import pokemonConfundido from "../../About/img/pokemon-confundido.gif";
+import RenderCardPokemons from "../RenderCardPokemon/RenderCardPokemon";
 import RenderPokemonByName from "../SearchName/RenderPokemonByName";
 
 const ContainerInfo = ({ tenPokemons }: any) => {

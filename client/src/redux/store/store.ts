@@ -1,5 +1,5 @@
 import { User } from "@/models";
-import { Pokemons } from "@/models/Pokemons";
+import { Pokemons, Type } from "@/models/Pokemons";
 import { configureStore } from "@reduxjs/toolkit";
 import {
   favoritesSlice,
@@ -9,6 +9,8 @@ import {
   errorSlice,
   allUsersSlice,
   userSlice,
+  FiltereSlice,
+  typesSlice,
 } from "../states";
 
 export interface AppStore {
@@ -19,6 +21,8 @@ export interface AppStore {
   error: string;
   user: User;
   users: User[];
+  filter: Pokemons[];
+  types: Type[];
 }
 
 export const store = configureStore<AppStore>({
@@ -30,6 +34,8 @@ export const store = configureStore<AppStore>({
     error: errorSlice.reducer,
     users: allUsersSlice.reducer,
     user: userSlice.reducer,
+    filter: FiltereSlice.reducer,
+    types: typesSlice.reducer,
   },
 });
 

@@ -1,6 +1,6 @@
 import { deleteMessageError, useAppDispatch, useAppSelector } from "@/redux";
-import { RenderCardPokemons } from "@/utility";
 import { useEffect } from "react";
+import RenderCardPokemons from "../RenderCardPokemon/RenderCardPokemon";
 
 const RenderPokemonByName = () => {
   const search = useAppSelector((state) => state.byName);

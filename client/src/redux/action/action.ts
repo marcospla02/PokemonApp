@@ -1,7 +1,13 @@
 import { Pokemons, User } from "@/models";
 import { Dispatch } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getByName, getDetail, getPokemons, messageError } from "../states";
+import {
+  getByName,
+  getDetail,
+  getPokemons,
+  getTypeDb,
+  messageError,
+} from "../states";
 import { getUser } from "../states/allUsers";
 import { getUserId } from "../states/user";
 
@@ -65,5 +71,12 @@ export const updateUser = (id: string, value: any) => (dispatch: any) => {
     .then((res) => {
       return dispatch(getUserAction(id));
     })
+    .catch((err) => console.log(err));
+};
+
+export const getTypes = () => (dispatch: Dispatch) => {
+  axios
+    .get(`${baseUrl}poketype`)
+    .then((res) => dispatch(getTypeDb(res.data)))
     .catch((err) => console.log(err));
 };
