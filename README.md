@@ -1,11 +1,11 @@
 # PokemonApp
 
-<img height="400" width='100%' src="./client/src/img/Portada-new.png" />
+<img height="400" width='100%' src="./client/src/img/laptop-portada.png" />
 
 Proyecto realizado para practicar tecnologías nuevas y seguir creciendo! Las tecnologias que use fueron: Typescript, React con Vite, Redux Toolkit, Material UI, Styled-Components, PostgreSql, Express y Nodejs.
 En la pagina podes agregar a favoritos (Estando o no logueado) y loguearte, si tenias favoritos en la cuenta se van a cargar junto con los nuevos que agregaste.
-Podes buscar el Pokemon por nombre. Tambien podes ordenarlos por rango de ataque o defensa y podes filtrar por el distinto tipo que tenga el pokemon. 
-(La pagina no esta deployada porque en railway no me anda y en render tengo que esperar hasta el mes 4 de 2023 para poder subirlo. Te pido perdon!! yo tambien queria que este en internet) 
+Podes buscar el Pokemon por nombre. Tambien podes ordenarlos por rango de ataque o defensa y podes filtrar por el distinto tipo que tenga el pokemon.
+(La pagina no esta deployada porque en railway no me anda y en render tengo que esperar hasta el mes 4 de 2023 para poder subirlo. Te pido perdon!! yo tambien queria que este en internet)
 
 Pd: Si entras a la foto se ve con mejor calidad!!
 
