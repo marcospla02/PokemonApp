@@ -7,8 +7,6 @@ En la pagina podes agregar a favoritos (Estando o no logueado) y loguearte, si t
 Podes buscar el Pokemon por nombre. Tambien podes ordenarlos por rango de ataque o defensa y podes filtrar por el distinto tipo que tenga el pokemon.
 (La pagina no esta deployada porque en railway no me anda y en render tengo que esperar hasta el mes 4 de 2023 para poder subirlo. Te pido perdon!! yo tambien queria que este en internet)
 
-Pd: Si entras a la foto se ve con mejor calidad!!
-
 ## Objetivos del Proyecto
 
 - Construir una App utlizando Typescript, React, Vite, Redux Toolkit, Material UI, Express, Node y Sequelize.
@@ -105,7 +103,7 @@ Se debe desarrollar un servidor en Node/Express y Typescript con las siguientes 
 
 ## Imagenes del proyecto
 
-<img src='./client/src/img/portada-dropdown.png' alt='portada-con-dropdown' />
+<img src='./client/src/img/portada-new.png' alt='portada-con-dropdown' />
 <img src='./client/src/img/detalle.png' alt='detalle' />
 <img src='./client/src/img/search.png' alt='search' />
 <img src='./client/src/img/favoritos.png' alt='favoritos' />
