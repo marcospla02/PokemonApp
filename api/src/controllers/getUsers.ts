@@ -1,4 +1,3 @@
-import { UserInt } from "../assets/interfaces";
 import { User } from "../db";
 
 export const getUsers = async () => {

@@ -1,8 +1,8 @@
-// import { getPokemons } from "./getPokemons";
+import { getPokemons } from "./getPokemons";
 import getPokemonsDb from "./getPokemonsDb";
 
 export default async function getAllPokemons() {
-  // await getPokemons();
+  await getPokemons();
   try {
     const db = await getPokemonsDb();
 

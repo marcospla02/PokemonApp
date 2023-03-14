@@ -12,11 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// import { getPokemons } from "./getPokemons";
+const getPokemons_1 = require("./getPokemons");
 const getPokemonsDb_1 = __importDefault(require("./getPokemonsDb"));
 function getAllPokemons() {
     return __awaiter(this, void 0, void 0, function* () {
-        // await getPokemons();
+        yield (0, getPokemons_1.getPokemons)();
         try {
             const db = yield (0, getPokemonsDb_1.default)();
             return db;
