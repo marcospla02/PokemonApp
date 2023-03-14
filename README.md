@@ -1,6 +1,6 @@
 # PokemonApp
 
-<img height="400" width='100%' src="./client/src/img/portada.png" />
+<img height="400" width='100%' src="./client/src/img/Portada-new.png" />
 
 Proyecto realizado para practicar tecnologías nuevas y seguir creciendo! Las tecnologias que use fueron: Typescript, React con Vite, Redux Toolkit, Material UI, Styled-Components, PostgreSql, Express y Nodejs.
 En la pagina podes agregar a favoritos (Estando o no logueado) y loguearte, si tenias favoritos en la cuenta se van a cargar junto con los nuevos que agregaste.
