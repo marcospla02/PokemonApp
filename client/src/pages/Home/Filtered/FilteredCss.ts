@@ -21,6 +21,7 @@ export const ContainerFiltered = styled.div`
     background: #fff;
     color: #000;
     border: none;
+    cursor: pointer;
   }
 
   #letter {
