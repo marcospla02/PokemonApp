@@ -12,18 +12,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = require("../db");
 function findNameInDb(name) {
     return __awaiter(this, void 0, void 0, function* () {
-        const PokemonDb = yield db_1.Pokemon.findOne({
-            where: { name: name },
-            include: {
-                model: db_1.Type,
-                attributes: ["name"],
-                through: {
-                    attributes: [],
+        try {
+            const PokemonDb = yield db_1.Pokemon.findOne({
+                where: { name: name },
+                include: {
+                    model: db_1.Type,
+                    attributes: ["name"],
+                    through: {
+                        attributes: [],
+                    },
                 },
-            },
-        });
+            });
+            return PokemonDb;
+        }
+        catch (error) {
+            return error.message;
+        }
         // if (!PokemonDb) throw new Error("the name is not available");
-        return PokemonDb;
     });
 }
 exports.default = findNameInDb;

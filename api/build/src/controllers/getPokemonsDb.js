@@ -12,31 +12,36 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = require("../db");
 function getPokemonsDb() {
     return __awaiter(this, void 0, void 0, function* () {
-        const db = yield db_1.Pokemon.findAll({
-            attributes: [
-                "id",
-                "idPoke",
-                "name",
-                "life",
-                "height",
-                "weight",
-                "Attack",
-                "Defense",
-                "Speed",
-                "img",
-                "typesApi",
-            ],
-            include: {
-                model: db_1.Type,
-                attributes: ["name"],
-                through: {
-                    // this is the relationship with Pokemon and poke_type
-                    attributes: [],
+        try {
+            const db = yield db_1.Pokemon.findAll({
+                attributes: [
+                    "id",
+                    "idPoke",
+                    "name",
+                    "life",
+                    "height",
+                    "weight",
+                    "Attack",
+                    "Defense",
+                    "Speed",
+                    "img",
+                    "typesApi",
+                ],
+                include: {
+                    model: db_1.Type,
+                    attributes: ["name"],
+                    through: {
+                        // this is the relationship with Pokemon and poke_type
+                        attributes: [],
+                    },
                 },
-            },
-        });
-        // console.log("soy en db:", db);
-        return db;
+            });
+            // console.log("soy en db:", db);
+            return db;
+        }
+        catch (error) {
+            return error.message;
+        }
     });
 }
 exports.default = getPokemonsDb;

@@ -28,7 +28,7 @@ var getAllPokemons_1 = require("./getAllPokemons");
 Object.defineProperty(exports, "getAllPokemons", { enumerable: true, get: function () { return __importDefault(getAllPokemons_1).default; } });
 var getPokemonIdInDb_1 = require("./getPokemonIdInDb");
 Object.defineProperty(exports, "getPokemonIdInDb", { enumerable: true, get: function () { return __importDefault(getPokemonIdInDb_1).default; } });
-__exportStar(require("./getPokemons"), exports);
+// export * from "./getPokemons";
 var getPokemonsDb_1 = require("./getPokemonsDb");
 Object.defineProperty(exports, "getPokemonsDb", { enumerable: true, get: function () { return __importDefault(getPokemonsDb_1).default; } });
 var getTypes_1 = require("./getTypes");

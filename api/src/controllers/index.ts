@@ -4,7 +4,7 @@ export * from "./deletePokemon";
 export { default as findNameInDb } from "./findNameInDb";
 export { default as getAllPokemons } from "./getAllPokemons";
 export { default as getPokemonIdInDb } from "./getPokemonIdInDb";
-export * from "./getPokemons";
+// export * from "./getPokemons";
 export { default as getPokemonsDb } from "./getPokemonsDb";
 export { default as getTypes } from "./getTypes";
 export * from "./getUsers";
