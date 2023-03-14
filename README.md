@@ -103,7 +103,7 @@ Se debe desarrollar un servidor en Node/Express y Typescript con las siguientes 
 
 ## Imagenes del proyecto
 
-<img src='./client/src/img/portada-new.png' alt='portada-con-dropdown' />
+<img src='./client/src/img/Portada-new.png' alt='portada-con-dropdown' />
 <img src='./client/src/img/detalle.png' alt='detalle' />
 <img src='./client/src/img/search.png' alt='search' />
 <img src='./client/src/img/favoritos.png' alt='favoritos' />
