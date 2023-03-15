@@ -125,7 +125,7 @@ const Home = () => {
             <Pagination
               page={page}
               variant="outlined"
-              count={countPokemons < 10 ? 1 : countPokemons}
+              count={countPokemons}
               sx={{
                 width: "100%",
                 display: "flex",
